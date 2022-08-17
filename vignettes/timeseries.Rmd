@@ -36,7 +36,7 @@ We generally start with a linelist dataset (make sure it is a `data.table`!).
 d <- norway_covid19_cases_by_time_location
 
 # There is a lot of data in this dataset, so we'll just use 2022 data here
-d <- d[isoyear == 2022]
+d <- d[isoyear == 2021]
 
 # We have one daily dataset
 d_day <- d[granularity_time == "day"]
@@ -56,6 +56,15 @@ plot_timeseries(d_week[granularity_geo == "nation"],
                 breaks_y = splstyle::pretty_breaks(5))
 ```
 
+```{r}
+plot_timeseries(d_week[granularity_geo == "county"], 
+                var_y = c("Covid cases" = "covid19_cases_testdate_n"), 
+                breaks_x = every_nth(4), 
+                breaks_y = splstyle::pretty_breaks(5),
+                var_group = "location_code")
+```
+
+
 ## Epicurves for multiple geographical areas
 
 When we have multiple geographical areas, we use the argument `facet_wrap` to create multiple epicurves.
@@ -63,41 +72,13 @@ When we have multiple geographical areas, we use the argument `facet_wrap` to cr
 Daily epicurve for all of the counties
 
 ```{r fig.height=10, fig.width=8}
-plot_epicurve(d_day[granularity_geo == "county"],
-              type = "single",
-              var_y = "covid19_cases_testdate_n",
-              var_x = "date",
+plot_timeseries(d_week[granularity_geo == "county"],
+              var_y = c("Covid cases" = "covid19_cases_testdate_n"), 
               lab_main = "Daily epicurve for all the counties",
               facet_wrap = "location_code",
+              breaks_x = every_nth(10), 
+              breaks_y = splstyle::pretty_breaks(5),
               lab_y = "Cases")
 ```
 
-Weekly epicurve for all of the counties
 
-```{r fig.height=10, fig.width=8}
-plot_epicurve(d_week[granularity_geo == "county"],
-              type = "single",
-              var_y = "covid19_cases_testdate_n",
-              lab_main = "Weekly epicurve for all the counties",
-              facet_wrap = "location_code",
-              facet_ncol = 4,
-              lab_y = "Cases")
-```
-
-## Stacked epicurves
-
-Sometimes 
-
-Sometimes you would like to add colours to differentiate between different variables. This can be done through `type = stacked` and the argument `fill_var`
-
-```{r}
-
-plot_epicurve(d_week[granularity_geo == "county"],
-              type = "stacked",
-              fill_var = "location_code",
-              var_y = "covid19_cases_testdate_n",
-              lab_main = "Weekly epicurve for all the counties",
-              lab_y = "Cases")
-
-
-```
