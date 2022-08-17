@@ -108,8 +108,10 @@ plot_timeseries.default <- function(x,
 
   }
 
+  # guide = guide_legend(ncol = 3)
+
   q <- q + expand_limits(y = 0)
-  q <- q + scale_color_fhi(lab_legend, palette = palette, direction = palette_dir, guide = guide_legend(ncol = 3))
+  q <- q + scale_color_fhi(lab_legend, palette = palette, direction = palette_dir)
   q <- q + theme_fhi_lines_horizontal(legend_position = legend_position, base_size = base_size)
   q <- q + theme(legend.direction = legend_direction)
   q <- q + labs(title = lab_main,
