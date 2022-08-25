@@ -96,7 +96,12 @@ plot_timeseries.default <- function(x,
     q <- q + geom_path(aes(y = n), lwd = 1)
   }
 
-  q <- q + scale_x_discrete(name = lab_x, breaks = breaks_x)
+  if(var_x == "date"){
+    q <- q + scale_x_date(name = lab_x, breaks = breaks_x)
+  } else{
+    q <- q + scale_x_discrete(name = lab_x, breaks = breaks_x)
+  }
+
   q <- q + scale_y_continuous(name = lab_y,
                               breaks = breaks_y,
                               expand = expand_scale(mult = c(0, 0.1)),

@@ -36,7 +36,7 @@ We generally start with a linelist dataset (make sure it is a `data.table`!).
 d <- norway_covid19_cases_by_time_location
 
 # There is a lot of data in this dataset, so we'll just use 2022 data here
-d <- d[isoyear == 2021]
+d <- d[isoyear == 2022]
 
 # We have one daily dataset
 d_day <- d[granularity_time == "day"]
@@ -56,6 +56,20 @@ plot_timeseries(d_week[granularity_geo == "nation"],
                 breaks_y = splstyle::pretty_breaks(5))
 ```
 
+
+```{r}
+plot_timeseries(d_day[granularity_geo == "nation"], 
+                var_x = "date",
+                var_y = c("Covid cases" = "covid19_cases_testdate_n"), 
+                breaks_x = every_nth(4), 
+                breaks_y = splstyle::pretty_breaks(5))
+```
+
+
+## Timeseries for multiple geographical areas
+
+### All in one graph
+
 ```{r}
 plot_timeseries(d_week[granularity_geo == "county"], 
                 var_y = c("Covid cases" = "covid19_cases_testdate_n"), 
@@ -65,11 +79,11 @@ plot_timeseries(d_week[granularity_geo == "county"],
 ```
 
 
-## Epicurves for multiple geographical areas
+### Split into multiple graphs
 
-When we have multiple geographical areas, we use the argument `facet_wrap` to create multiple epicurves.
+When we have multiple geographical areas, we use the argument `facet_wrap` to create multiple timeseries.
 
-Daily epicurve for all of the counties
+Weekly timeseries for all of the counties.
 
 ```{r fig.height=10, fig.width=8}
 plot_timeseries(d_week[granularity_geo == "county"],
