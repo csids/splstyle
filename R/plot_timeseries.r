@@ -32,6 +32,7 @@ plot_timeseries <- function(x,
 #' @param base_size The base size of the plot.
 #' @param wide_table TRUE if the data.table is wide and FALSE if the data.table is long.
 #' @param var_group variable to group by
+#' @param point TRUE if the graph should have geom_points as well as the line.
 #' @param ... Not currently used.
 #' @examples
 #' plot_timeseries(norway_covid19_cases_by_time_location[granularity_geo == "nation" & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = splstyle::pretty_breaks(5))
