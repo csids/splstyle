@@ -60,6 +60,7 @@ plot_timeseries.default <- function(x,
                             base_size = 12,
                             wide_table = TRUE,
                             var_group = NULL,
+                            point = FALSE,
                             ...
                             ) {
 
@@ -94,6 +95,10 @@ plot_timeseries.default <- function(x,
   } else {
     q <- ggplot(d, aes_string(x = var_x, color = var_group, group = var_group))
     q <- q + geom_path(aes(y = n), lwd = 1)
+  }
+
+  if(point) {
+    q <- q + geom_point(aes(y = n))
   }
 
   if(var_x == "date"){
