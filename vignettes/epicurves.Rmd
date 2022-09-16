@@ -81,7 +81,6 @@ plot_epicurve(d_day[granularity_geo == "county"],
               type = "single",
               var_y = "covid19_cases_testdate_n",
               var_x = "date",
-              breaks_x = NULL,
               lab_main = "Daily epicurve for all the counties",
               facet_wrap = "location_code",
               lab_y = "Cases")
