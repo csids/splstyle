@@ -27,7 +27,11 @@
   base_size = 12,
   wide_table = TRUE,
   var_group = NULL,
+<<<<<<< HEAD
   point = FALSE,
+=======
+  geom_point = FALSE,
+>>>>>>> main
   ...
 )
 }
@@ -76,7 +80,11 @@
 
 \item{var_group}{variable to group by}
 
+<<<<<<< HEAD
 \item{point}{TRUE if the graph should have geom_points as well as the line.}
+=======
+\item{geom_point}{TRUE if points should be included in the graph.}
+>>>>>>> main
 
 \item{...}{Not currently used.}
 }
