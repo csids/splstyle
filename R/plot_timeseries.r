@@ -32,6 +32,7 @@ plot_timeseries <- function(x,
 #' @param base_size The base size of the plot.
 #' @param wide_table TRUE if the data.table is wide and FALSE if the data.table is long.
 #' @param var_group variable to group by
+#' @param geom_point TRUE if points should be included in the graph.
 #' @param ... Not currently used.
 #' @examples
 #' plot_timeseries(norway_covid19_cases_by_time_location[granularity_geo == "nation" & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = splstyle::pretty_breaks(5))
@@ -60,6 +61,7 @@ plot_timeseries.default <- function(x,
                             base_size = 12,
                             wide_table = TRUE,
                             var_group = NULL,
+                            geom_point = FALSE,
                             ...
                             ) {
 
@@ -94,6 +96,10 @@ plot_timeseries.default <- function(x,
   } else {
     q <- ggplot(d, aes_string(x = var_x, color = var_group, group = var_group))
     q <- q + geom_path(aes(y = n), lwd = 1)
+  }
+
+  if(point) {
+    q <- q + geom_point(aes(y = n))
   }
 
   if(var_x == "date"){
