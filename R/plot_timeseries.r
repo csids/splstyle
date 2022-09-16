@@ -98,7 +98,7 @@ plot_timeseries.default <- function(x,
     q <- q + geom_path(aes(y = n), lwd = 1)
   }
 
-  if(point) {
+  if(geom_point) {
     q <- q + geom_point(aes(y = n))
   }
 
