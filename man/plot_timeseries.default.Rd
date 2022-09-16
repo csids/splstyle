@@ -27,6 +27,7 @@
   base_size = 12,
   wide_table = TRUE,
   var_group = NULL,
+  geom_point = FALSE,
   ...
 )
 }
@@ -74,6 +75,8 @@
 \item{wide_table}{TRUE if the data.table is wide and FALSE if the data.table is long.}
 
 \item{var_group}{variable to group by}
+
+\item{geom_point}{TRUE if points should be included in the graph.}
 
 \item{...}{Not currently used.}
 }
