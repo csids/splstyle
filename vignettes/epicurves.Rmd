@@ -103,15 +103,12 @@ plot_epicurve(d_week[granularity_geo == "county"],
 If you would like to add colours to differentiate between different variables. This can be done through `type = "stacked"` and the argument `fill_var`
 
 ```{r}
-
 plot_epicurve(d_week[granularity_geo == "county"],
               type = "stacked",
               fill_var = "location_code",
               var_y = "covid19_cases_testdate_n",
               lab_main = "Weekly epicurve for all the counties",
               lab_y = "Cases")
-
-
 ```
 
 ## Dodged epicurves
@@ -119,12 +116,9 @@ plot_epicurve(d_week[granularity_geo == "county"],
 If you would like to compare different variables. This can be done with the argument `type = "dodged"` and specifying what you want to compare with the argument `fill_var`.
 
 ```{r}
-
 plot_epicurve(d_week[granularity_geo == "county" & location_code %in% c("county46", "county03", "county30")],
               type = "dodged",
               fill_var = "location_code",
               var_y = "covid19_cases_testdate_n",
               lab_y = "Cases")
-
-
 ```
