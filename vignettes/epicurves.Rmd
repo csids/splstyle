@@ -54,7 +54,7 @@ plot_epicurve(d_day[location_code == "norge"],
               type = "single", 
               var_y = "covid19_cases_testdate_n", 
               var_x = "date",
-              breaks_x = NULL,
+              breaks_x = "1 week",
               lab_main = "Daily epicurve for Norway",
               lab_y = "Cases")
 ```
@@ -66,7 +66,7 @@ plot_epicurve(d_week[location_code == "norge"],
               type = "single", 
               var_y = "covid19_cases_testdate_n", 
               lab_main = "Weekly epicurve for Norway",
-              breaks_x = fhiplot::every_nth(n = 2),
+              breaks_x = every_nth(n = 2),
               lab_y = "Cases")
 ```
 
