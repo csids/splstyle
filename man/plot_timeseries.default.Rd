@@ -13,6 +13,7 @@
   lab_main = NULL,
   lab_sub = NULL,
   lab_caption = fhi_caption(),
+  lab_date = "\%Y-\%m-\%d",
   lab_y = NULL,
   lab_x = NULL,
   lab_legend = NULL,
@@ -47,6 +48,8 @@
 \item{lab_sub}{The subtitle of the graph}
 
 \item{lab_caption}{If not specified, splstyle::fhi_caption() is used as the lab_caption.}
+
+\item{lab_date}{How the dates on the x-axis should be formatted if var_x = "date"}
 
 \item{lab_y}{The label of the y-axis}
 
