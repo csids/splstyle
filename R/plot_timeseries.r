@@ -18,6 +18,7 @@ plot_timeseries <- function(x,
 #' @param lab_main The main title of the graph
 #' @param lab_sub The subtitle of the graph
 #' @param lab_caption If not specified, splstyle::fhi_caption() is used as the lab_caption.
+#' @param lab_date How the dates on the x-axis should be formatted if var_x = "date"
 #' @param lab_x The label of the x-axis
 #' @param lab_y The label of the y-axis
 #' @param lab_legend The label of the legend.
@@ -47,6 +48,7 @@ plot_timeseries.default <- function(x,
                             lab_main = NULL,
                             lab_sub = NULL,
                             lab_caption = fhi_caption(),
+                            lab_date = "%Y-%m-%d",
                             lab_y = NULL,
                             lab_x = NULL,
                             lab_legend = NULL,
@@ -103,7 +105,7 @@ plot_timeseries.default <- function(x,
   }
 
   if(var_x == "date"){
-    q <- q + scale_x_date(name = lab_x, breaks = breaks_x)
+    q <- q + scale_x_date(name = lab_x, date_labels = lab_date, breaks = breaks_x)
   } else{
     q <- q + scale_x_discrete(name = lab_x, breaks = breaks_x)
   }
