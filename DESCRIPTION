@@ -1,4 +1,4 @@
-Package: splstyle
+Package: csstyle
 Title: Outputs in the Style(s) used by FHI and Sykdomspulsen
 Version: 2020.5.25
 Authors@R: c(
