@@ -7,8 +7,8 @@
 #' @export
 location_code_to_factor <- function(
   x,
-  label = splstyle::config$location_code_to_factor_label, # location_name
-  label_if_not_unique = splstyle::config$location_code_to_factor_label_if_not_unique, # location_name_description_nb
+  label = csstyle::config$location_code_to_factor_label, # location_name
+  label_if_not_unique = csstyle::config$location_code_to_factor_label_if_not_unique, # location_name_description_nb
   reference = fhidata::norway_locations_names(),
   direction = 1
 ){

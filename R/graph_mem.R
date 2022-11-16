@@ -4,7 +4,7 @@
 #' @param title the title for the chart
 #' @param lang language of labels
 #' @param weeks start and end week for the plot
-#' @param color_palette which color palette to use (fhi uses standard splstyle, otherwise influensa palette is used)
+#' @param color_palette which color palette to use (fhi uses standard csstyle, otherwise influensa palette is used)
 #' @param legend_control using a legend or text on the chart
 #'
 #' @import ggplot2

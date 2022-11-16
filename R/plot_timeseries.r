@@ -13,18 +13,18 @@ plot_timeseries <- function(x,
 #' @param x Dataset
 #' @param var_x "date" or "isoyearweek"
 #' @param var_y The name of the variable to use on the y-axis of the graph
-#' @param breaks_x Use splstyle::every_nth() to choose how many ticks to show on the x-axis
-#' @param breaks_y Use splstyle::pretty_breaks() to add ticks on the y-axis
+#' @param breaks_x Use csstyle::every_nth() to choose how many ticks to show on the x-axis
+#' @param breaks_y Use csstyle::pretty_breaks() to add ticks on the y-axis
 #' @param lab_main The main title of the graph
 #' @param lab_sub The subtitle of the graph
-#' @param lab_caption If not specified, splstyle::fhi_caption() is used as the lab_caption.
+#' @param lab_caption If not specified, csstyle::fhi_caption() is used as the lab_caption.
 #' @param lab_date How the dates on the x-axis should be formatted if var_x = "date"
 #' @param lab_x The label of the x-axis
 #' @param lab_y The label of the y-axis
 #' @param lab_legend The label of the legend.
 #' @param legend_position The position the legend should have. If not specified, "bottom" is used.
 #' @param legend_direction layout of items in legend ("horizontal" or "vertical")
-#' @param format_y How the y-axis ticks should be formatted. For example splstyle::format_nor_num_0 or fhiplot::format_nor_perc_0
+#' @param format_y How the y-axis ticks should be formatted. For example csstyle::format_nor_num_0 or fhiplot::format_nor_perc_0
 #' @param facet_wrap What column in the dataset to use to split the dataset.
 #' @param facet_ncol How many columns with graphs if facet_wrap is used.
 #' @param palette What palette to use for the lines. The default is "primary".
@@ -36,9 +36,9 @@ plot_timeseries <- function(x,
 #' @param geom_point TRUE if points should be included in the graph.
 #' @param ... Not currently used.
 #' @examples
-#' plot_timeseries(norway_covid19_cases_by_time_location[granularity_geo == "nation" & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = splstyle::pretty_breaks(5))
-#' plot_timeseries(norway_covid19_cases_by_time_location[location_code %in% c("county03", "county18", "county30", "county54") & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = splstyle::pretty_breaks(5), facet_wrap = "location_code")
-#' plot_timeseries(norway_covid19_cases_by_time_location[granularity_geo == "county" & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = splstyle::pretty_breaks(5), var_group = "location_code")
+#' plot_timeseries(norway_covid19_cases_by_time_location[granularity_geo == "nation" & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = csstyle::pretty_breaks(5))
+#' plot_timeseries(norway_covid19_cases_by_time_location[location_code %in% c("county03", "county18", "county30", "county54") & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = csstyle::pretty_breaks(5), facet_wrap = "location_code")
+#' plot_timeseries(norway_covid19_cases_by_time_location[granularity_geo == "county" & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = csstyle::pretty_breaks(5), var_group = "location_code")
 #' @export
 plot_timeseries.default <- function(x,
                             var_x = "isoyearweek",
