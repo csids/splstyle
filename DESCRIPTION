@@ -3,14 +3,13 @@ Title: Outputs in the Style(s) used by FHI and Sykdomspulsen
 Version: 2020.5.25
 Authors@R: c(
   person(c("Celine","Victoria"), "Berg-Hansen", email = "celinevictoria.berg-hansen@fhi.no", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-0033-2019")),
-  person(c("Richard","Aubrey"), "White", email = "hello@rwhite.no", role = c("aut"), comment = c(ORCID = "0000-0002-6747-1726")),
-  person(given = "Folkehelseinstituttet", role = c("cph"))
+  person(c("Richard","Aubrey"), "White", email = "hello@rwhite.no", role = c("aut"), comment = c(ORCID = "0000-0002-6747-1726"))
   )
 Description: Helpful functions for creating outputs in the style(s) used by FHI and Sykdomspulsen.
 Depends: R (>= 3.3.0)
 License: MIT
-URL: https://docs.sykdomspulsen.no/splstyle, https://github.com/sykdomspulsen-org/splstyle
-BugReports: https://github.com/sykdomspulsen-org/splstyle/issues
+URL: https://www.csids.no/csstyle, https://github.com/csids/csstyle
+BugReports: https://github.com/csids/csstyle/issues
 Encoding: UTF-8
 LazyData: true
 Imports: data.table,
