@@ -12,6 +12,6 @@
     "csstyle ",
     version,
     "\n",
-    "https://www.csids.no/csstyle"
+    "https://www.csids.no/csstyle/"
   ))
 }

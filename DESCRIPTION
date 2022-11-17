@@ -8,7 +8,7 @@ Authors@R: c(
 Description: Helpful functions for creating outputs in the style(s) used by FHI and Sykdomspulsen.
 Depends: R (>= 3.3.0)
 License: MIT
-URL: https://www.csids.no/csstyle, https://github.com/csids/csstyle
+URL: https://www.csids.no/csstyle/, https://github.com/csids/csstyle
 BugReports: https://github.com/csids/csstyle/issues
 Encoding: UTF-8
 LazyData: true
