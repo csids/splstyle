@@ -48,26 +48,26 @@ If your data does not contain any missing, then we recommend to use the `_comple
 
 ```{r fig.height=7, fig.width=7}
 library(ggplot2)
-library(splstyle)
+library(csstyle)
 
 q <- ggplot()
 q <- q + geom_polygon(data = pd, aes( x = long, y = lat, group = group, fill=category), color="black")
 q <- q + theme_void()
 q <- q + coord_quickmap()
-q <- q + splstyle::scale_fill_fhi("Category",palette = "map_seq_complete", direction = 1, drop=F)
+q <- q + csstyle::scale_fill_fhi("Category",palette = "map_seq_complete", direction = 1, drop=F)
 q <- q + labs(title = "Palette = map_seq_complete")
 q
 ```
 
 ```{r fig.height=7, fig.width=7}
 library(ggplot2)
-library(splstyle)
+library(csstyle)
 
 q <- ggplot()
 q <- q + geom_polygon(data = pd, aes( x = long, y = lat, group = group, fill=category), color="black")
 q <- q + theme_void()
 q <- q + coord_quickmap()
-q <- q + splstyle::scale_fill_fhi("Category",palette = "map_seq_x2_complete", direction = 1, drop=F)
+q <- q + csstyle::scale_fill_fhi("Category",palette = "map_seq_x2_complete", direction = 1, drop=F)
 q <- q + labs(title = "Palette = map_seq_x2_complete")
 q
 ```
@@ -76,52 +76,52 @@ If your data does contain missing, then we recommend to use the `_missing` map p
 
 ```{r fig.height=7, fig.width=7}
 library(ggplot2)
-library(splstyle)
+library(csstyle)
 
 q <- ggplot()
 q <- q + geom_polygon(data = pd, aes( x = long, y = lat, group = group, fill=category_with_missing), color="black", size=0.2)
 q <- q + theme_void()
 q <- q + coord_quickmap()
-q <- q + splstyle::scale_fill_fhi("Category",palette = "map_seq_missing", direction = 1, drop=F)
+q <- q + csstyle::scale_fill_fhi("Category",palette = "map_seq_missing", direction = 1, drop=F)
 q <- q + labs(title = "Palette = map_seq_missing")
 q
 ```
 
 ```{r fig.height=7, fig.width=7}
 library(ggplot2)
-library(splstyle)
+library(csstyle)
 
 q <- ggplot()
 q <- q + geom_polygon(data = pd, aes( x = long, y = lat, group = group, fill=category_with_missing), color="black", size=0.2)
 q <- q + theme_void()
 q <- q + coord_quickmap()
-q <- q + splstyle::scale_fill_fhi("Category",palette = "map_seq_missing_x2", direction = 1, drop=F)
+q <- q + csstyle::scale_fill_fhi("Category",palette = "map_seq_missing_x2", direction = 1, drop=F)
 q <- q + labs(title = "Palette = map_seq_missing_x2")
 q
 ```
 
 ```{r fig.height=7, fig.width=7}
 library(ggplot2)
-library(splstyle)
+library(csstyle)
 
 q <- ggplot()
 q <- q + geom_polygon(data = pd, aes( x = long, y = lat, group = group, fill=category_with_missing), color="black", size=0.2)
 q <- q + theme_void()
 q <- q + coord_quickmap()
-q <- q + splstyle::scale_fill_fhi("Category",palette = "map_seq_x2_missing", direction = 1, drop=F)
+q <- q + csstyle::scale_fill_fhi("Category",palette = "map_seq_x2_missing", direction = 1, drop=F)
 q <- q + labs(title = "Palette = map_seq_x2_missing")
 q
 ```
 
 ```{r fig.height=7, fig.width=7}
 library(ggplot2)
-library(splstyle)
+library(csstyle)
 
 q <- ggplot()
 q <- q + geom_polygon(data = pd, aes( x = long, y = lat, group = group, fill=category_with_missing), color="black", size=0.2)
 q <- q + theme_void()
 q <- q + coord_quickmap()
-q <- q + splstyle::scale_fill_fhi("Category",palette = "map_seq_x2_missing_x2", direction = 1, drop=F)
+q <- q + csstyle::scale_fill_fhi("Category",palette = "map_seq_x2_missing_x2", direction = 1, drop=F)
 q <- q + labs(title = "Palette = map_seq_x2_missing_x2")
 q
 ```

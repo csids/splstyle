@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 ```{r}
 library(ggplot2)
-library(splstyle)
+library(csstyle)
 ```
 
 ## Points
@@ -29,27 +29,27 @@ library(splstyle)
 ```{r}
 q <- ggplot(diamonds[1:200,], aes(carat, depth, color = cut))
 q <- q + geom_point(size = 4)
-q <- q + splstyle::scale_color_fhi(palette = "primary")
+q <- q + csstyle::scale_color_fhi(palette = "primary")
 q <- q + labs(title="Theme: 'theme_fhi_basic'")
-q <- q + splstyle::theme_fhi_basic()
+q <- q + csstyle::theme_fhi_basic()
 q
 ```
 
 ```{r}
 q <- ggplot(diamonds[1:200,], aes(carat, depth, color = cut))
 q <- q + geom_point(size = 4)
-q <- q + splstyle::scale_color_fhi(palette = "primary")
+q <- q + csstyle::scale_color_fhi(palette = "primary")
 q <- q + labs(title="Theme: 'theme_fhi_lines'")
-q <- q + splstyle::theme_fhi_lines()
+q <- q + csstyle::theme_fhi_lines()
 q
 ```
 
 ```{r}
 q <- ggplot(diamonds[1:200,], aes(carat, depth, color = cut))
 q <- q + geom_point(size = 4)
-q <- q + splstyle::scale_color_fhi(palette = "primary")
+q <- q + csstyle::scale_color_fhi(palette = "primary")
 q <- q + labs(title="Theme: 'theme_fhi_lines_horizontal'")
-q <- q + splstyle::theme_fhi_lines_horizontal()
+q <- q + csstyle::theme_fhi_lines_horizontal()
 q
 ```
 
@@ -60,26 +60,26 @@ We first try some barcharts with the `dis_primary` palette and two different the
 ```{r}
 q <- ggplot(diamonds, aes(x=color, fill = cut))
 q <- q + geom_bar()
-q <- q + splstyle::scale_fill_fhi(palette = "primary")
+q <- q + csstyle::scale_fill_fhi(palette = "primary")
 q <- q + labs(title="Theme: 'theme_fhi_basic'")
-q <- q + splstyle::theme_fhi_basic()
+q <- q + csstyle::theme_fhi_basic()
 q
 ```
 
 ```{r}
 q <- ggplot(diamonds, aes(x=color, fill = cut))
 q <- q + geom_bar()
-q <- q + splstyle::scale_fill_fhi(palette = "primary")
+q <- q + csstyle::scale_fill_fhi(palette = "primary")
 q <- q + labs(title="Theme: 'theme_fhi_lines'")
-q <- q + splstyle::theme_fhi_lines()
+q <- q + csstyle::theme_fhi_lines()
 q
 ```
 
 ```{r}
 q <- ggplot(diamonds, aes(x=color, fill = cut))
 q <- q + geom_bar()
-q <- q + splstyle::scale_fill_fhi(palette = "primary")
+q <- q + csstyle::scale_fill_fhi(palette = "primary")
 q <- q + labs(title="Theme: 'theme_fhi_lines_horizontal'")
-q <- q + splstyle::theme_fhi_lines_horizontal()
+q <- q + csstyle::theme_fhi_lines_horizontal()
 q
 ```

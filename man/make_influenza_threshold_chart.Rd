@@ -22,7 +22,7 @@ make_influenza_threshold_chart(
 
 \item{weeks}{start and end week for the plot}
 
-\item{color_palette}{which color palette to use (fhi uses standard splstyle, otherwise influensa palette is used)}
+\item{color_palette}{which color palette to use (fhi uses standard csstyle, otherwise influensa palette is used)}
 
 \item{legend_control}{using a legend or text on the chart}
 }

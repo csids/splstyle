@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 ```{r}
 library(ggplot2)
 library(data.table)
-library(splstyle)
+library(csstyle)
 ```
 
 ## Data
@@ -115,15 +115,15 @@ Daily epicurve for `county01`
 
 ```{r}
 q <- ggplot(d[location_code=="county03"], aes(x = date, y = N))
-q <- q + geom_col(fill = splstyle::base_color, width = 0.8)
+q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
 q <- q + scale_x_date("Date")
 q <- q + scale_y_continuous("Number of reported cases",
-  breaks = splstyle::pretty_breaks(5),
+  breaks = csstyle::pretty_breaks(5),
   expand = expansion(mult = c(0, 0.1))
 )
 q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
 q <- q + labs(caption = fhi_caption())
-q <- q + splstyle::theme_fhi_lines_horizontal()
+q <- q + csstyle::theme_fhi_lines_horizontal()
 q
 ```
 
@@ -131,15 +131,15 @@ Weekly epicurve for `county01`
 
 ```{r}
 q <- ggplot(w[location_code=="county03"], aes(x = isoyearweek, y = N))
-q <- q + geom_col(fill = splstyle::base_color, width = 0.8)
+q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
 q <- q + scale_x_discrete("Isoweek")
 q <- q + scale_y_continuous("Number of reported cases",
-  breaks = splstyle::pretty_breaks(5),
+  breaks = csstyle::pretty_breaks(5),
   expand = expansion(mult = c(0, 0.1))
 )
 q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
 q <- q + labs(caption = fhi_caption())
-q <- q + splstyle::theme_fhi_lines_horizontal()
+q <- q + csstyle::theme_fhi_lines_horizontal()
 q
 ```
 
@@ -147,16 +147,16 @@ Weekly epicurve with vertical x-axis labels
 
 ```{r}
 q <- ggplot(w, aes(x = isoyearweek, y = N))
-q <- q + geom_col(fill = splstyle::base_color, width = 0.8)
+q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
 q <- q + scale_x_discrete("Isoweek")
 q <- q + scale_y_continuous("Number of reported cases",
-  breaks = splstyle::pretty_breaks(5),
+  breaks = csstyle::pretty_breaks(5),
   expand = expansion(mult = c(0, 0.1))
 )
 q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
 q <- q + labs(caption = fhi_caption())
-q <- q + splstyle::theme_fhi_lines_horizontal()
-q <- q + splstyle::set_x_axis_vertical()
+q <- q + csstyle::theme_fhi_lines_horizontal()
+q <- q + csstyle::set_x_axis_vertical()
 q
 ```
 
@@ -168,18 +168,18 @@ Daily epicurve for all geographical areas with vertical x-axis labels
 
 ```{r fig.height=10, fig.width=8}
 q <- ggplot(d, aes(x = date, y = N))
-q <- q + geom_col(fill = splstyle::base_color, width = 0.8)
+q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
 q <- q + lemon::facet_rep_wrap(~location_code, repeat.tick.labels = "y")
-q <- q + splstyle::scale_fill_fhi("Location",palette="primary")
+q <- q + csstyle::scale_fill_fhi("Location",palette="primary")
 q <- q + scale_x_date("Date")
 q <- q + scale_y_continuous("Number of reported cases",
-  breaks = splstyle::pretty_breaks(5),
+  breaks = csstyle::pretty_breaks(5),
   expand = expansion(mult = c(0, 0.1))
 )
 q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
 q <- q + labs(caption = fhi_caption())
-q <- q + splstyle::theme_fhi_lines_horizontal()
-q <- q + splstyle::set_x_axis_vertical()
+q <- q + csstyle::theme_fhi_lines_horizontal()
+q <- q + csstyle::set_x_axis_vertical()
 q
 ```
 
@@ -187,18 +187,18 @@ Weekly epicurve with vertical x-axis labels
 
 ```{r fig.height=10, fig.width=8}
 q <- ggplot(d, aes(x = isoyearweek, y = N))
-q <- q + geom_col(fill = splstyle::base_color, width = 0.8)
+q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
 q <- q + lemon::facet_rep_wrap(~location_code, repeat.tick.labels = "y", ncol=4)
 q <- q + scale_fill_fhi("Location",palette="primary")
 q <- q + scale_x_discrete("Isoweek")
 q <- q + scale_y_continuous("Number of reported cases",
-  breaks = splstyle::pretty_breaks(5),
+  breaks = csstyle::pretty_breaks(5),
   expand = expansion(mult = c(0, 0.1))
 )
 q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
 q <- q + labs(caption = fhi_caption())
 q <- q + theme_fhi_lines_horizontal()
-q <- q + splstyle::set_x_axis_vertical()
+q <- q + csstyle::set_x_axis_vertical()
 q
 ```
 
@@ -215,16 +215,16 @@ q <- ggplot(w[location_code %in% c(
   "county34")], 
   aes(x = isoyearweek, y = N, fill = location_code))
 q <- q + geom_col(width = 0.8)
-q <- q + splstyle::scale_fill_fhi("Location",palette="primary")
+q <- q + csstyle::scale_fill_fhi("Location",palette="primary")
 q <- q + scale_x_discrete("Isoweek")
 q <- q + scale_y_continuous("Number of reported cases",
-  breaks = splstyle::pretty_breaks(5),
+  breaks = csstyle::pretty_breaks(5),
   expand = expansion(mult = c(0, 0.1))
 )
 q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
 q <- q + labs(caption = fhi_caption())
-q <- q + splstyle::theme_fhi_lines_horizontal()
-q <- q + splstyle::set_x_axis_vertical()
+q <- q + csstyle::theme_fhi_lines_horizontal()
+q <- q + csstyle::set_x_axis_vertical()
 q
 ```
 
@@ -266,20 +266,20 @@ q <- q + geom_line(
   )
 q <- q + scale_x_discrete("Isoweek")
 q <- q + scale_y_continuous("Number of reported cases",
-  breaks = splstyle::pretty_breaks(5),
+  breaks = csstyle::pretty_breaks(5),
   expand = expansion(mult = c(0, 0.1)),
   sec.axis = sec_axis(
     name = "Cumulative number of reported cases\n",
     ~ . * max_right / max_left,
-    breaks = splstyle::pretty_breaks(5),
-    labels = splstyle::format_nor
+    breaks = csstyle::pretty_breaks(5),
+    labels = csstyle::format_nor
   )
 )
-q <- q + splstyle::scale_fill_fhi("Fill", palette = "primary")
-q <- q + splstyle::scale_color_fhi("Color", palette = "posneg")
+q <- q + csstyle::scale_fill_fhi("Fill", palette = "primary")
+q <- q + csstyle::scale_color_fhi("Color", palette = "posneg")
 q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
 q <- q + labs(caption = fhi_caption())
-q <- q + splstyle::theme_fhi_lines_horizontal()
-q <- q + splstyle::set_x_axis_vertical()
+q <- q + csstyle::theme_fhi_lines_horizontal()
+q <- q + csstyle::set_x_axis_vertical()
 q
 ```

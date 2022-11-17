@@ -32,58 +32,58 @@ d_formatted <- copy(data)
 
 # we work with d_value to identify which cells should be colored
 # we save the colors in a matrix called "css_style_matrix"
-css_style_matrix <- splstyle::htmltable_css_style_matrix(d_value)
+css_style_matrix <- csstyle::htmltable_css_style_matrix(d_value)
 
 # set some of the third column to have a red background
 rows <- which(d_value[[3]] > 4)
-if(length(rows) > 0) css_style_matrix[rows,3] <- splstyle::htmltable_css_background_red
+if(length(rows) > 0) css_style_matrix[rows,3] <- csstyle::htmltable_css_background_red
 
 # set some of the fourth column to have a blue background according to risk level
 # risk level 1
 rows <- 1:nrow(d_value)
-if(length(rows) > 0) css_style_matrix[rows,4] <- splstyle::htmltable_css_risk_1_5(1, palette = "blue")
+if(length(rows) > 0) css_style_matrix[rows,4] <- csstyle::htmltable_css_risk_1_5(1, palette = "blue")
 
 # risk level 3
 rows <- which(d_value[[4]] > 1.3)
-if(length(rows) > 0) css_style_matrix[rows,4] <- splstyle::htmltable_css_risk_1_5(3, palette = "blue")
+if(length(rows) > 0) css_style_matrix[rows,4] <- csstyle::htmltable_css_risk_1_5(3, palette = "blue")
 
 # risk level 5
 rows <- which(d_value[[4]] > 1.5)
-if(length(rows) > 0) css_style_matrix[rows,4] <- splstyle::htmltable_css_risk_1_5(5, palette = "blue")
+if(length(rows) > 0) css_style_matrix[rows,4] <- csstyle::htmltable_css_risk_1_5(5, palette = "blue")
 
 # set some of the fifth column to have a red background according to risk level
 # risk level 1
 rows <- 1:nrow(d_value)
-if(length(rows) > 0) css_style_matrix[rows,5] <- splstyle::htmltable_css_risk_1_5(1, palette = "red")
+if(length(rows) > 0) css_style_matrix[rows,5] <- csstyle::htmltable_css_risk_1_5(1, palette = "red")
 
 # risk level 2
 rows <- which(d_value[[5]] > 0.1)
-if(length(rows) > 0) css_style_matrix[rows,5] <- splstyle::htmltable_css_risk_1_5(2, palette = "red")
+if(length(rows) > 0) css_style_matrix[rows,5] <- csstyle::htmltable_css_risk_1_5(2, palette = "red")
 
 # risk level 3
 rows <- which(d_value[[5]] > 0.2)
-if(length(rows) > 0) css_style_matrix[rows,5] <- splstyle::htmltable_css_risk_1_5(3, palette = "red")
+if(length(rows) > 0) css_style_matrix[rows,5] <- csstyle::htmltable_css_risk_1_5(3, palette = "red")
 
 
 # risk level 4
 rows <- which(d_value[[5]] > 0.3)
-if(length(rows) > 0) css_style_matrix[rows,5] <- splstyle::htmltable_css_risk_1_5(4, palette = "red")
+if(length(rows) > 0) css_style_matrix[rows,5] <- csstyle::htmltable_css_risk_1_5(4, palette = "red")
 
 # risk level 5
 rows <- which(d_value[[5]] > 0.4)
-if(length(rows) > 0) css_style_matrix[rows,5] <- splstyle::htmltable_css_risk_1_5(5, palette = "red")
+if(length(rows) > 0) css_style_matrix[rows,5] <- csstyle::htmltable_css_risk_1_5(5, palette = "red")
 
 
 # format the data nicely inside d_formatted
 # set columns 2-3 as numeric with 0 decimal places
-d_formatted[, Sepal.Length := splstyle::format_nor_num_0(Sepal.Length)]
-d_formatted[, Sepal.Width := splstyle::format_nor_num_0(Sepal.Width)]
+d_formatted[, Sepal.Length := csstyle::format_nor_num_0(Sepal.Length)]
+d_formatted[, Sepal.Width := csstyle::format_nor_num_0(Sepal.Width)]
 
 # set columns 4 as numeric with 1 decimal places
-d_formatted[, Petal.Length := splstyle::format_nor_num_1(Petal.Length)]
+d_formatted[, Petal.Length := csstyle::format_nor_num_1(Petal.Length)]
 
 # set columns 5 as percentage with 1 decimal places
-d_formatted[, Petal.Width := splstyle::format_nor_perc_1(100*Petal.Width)]
+d_formatted[, Petal.Width := csstyle::format_nor_perc_1(100*Petal.Width)]
 
 setnames(
   d_formatted,
@@ -92,7 +92,7 @@ setnames(
 
 # now combine d_formatted (contains the text in each cell)
 # and the css_style_matrix (contains the colors of each cell)
-tab <- splstyle::htmltable_quick_style(d_formatted, css_style_matrix = css_style_matrix) %>%
+tab <- csstyle::htmltable_quick_style(d_formatted, css_style_matrix = css_style_matrix) %>%
   htmlTable::htmlTable(
     rnames = FALSE,
     align = "|l|c|c|c|c|",
@@ -103,7 +103,7 @@ tab <- splstyle::htmltable_quick_style(d_formatted, css_style_matrix = css_style
   )
 
 # you can use this function to interactively test out your table
-# splstyle::view_html(tab)
+# csstyle::view_html(tab)
 ```
 
 ```{r, results="asis"}
@@ -144,7 +144,7 @@ openxlsx::writeData(
 openxlsx::addStyle(
   wb,
   sheet = "data",
-  style = splstyle::excel_style_title,
+  style = csstyle::excel_style_title,
   rows = 1,
   cols = 1:10,
   gridExpand = T,
@@ -155,7 +155,7 @@ openxlsx::addStyle(
 openxlsx::addStyle(
   wb,
   sheet = "data",
-  style = splstyle::excel_style_num_0,
+  style = csstyle::excel_style_num_0,
   rows = 2:100,
   cols = 2:3,
   gridExpand = T,
@@ -166,7 +166,7 @@ openxlsx::addStyle(
 openxlsx::addStyle(
   wb,
   sheet = "data",
-  style = splstyle::excel_style_num_1,
+  style = csstyle::excel_style_num_1,
   rows = 2:100,
   cols = 4,
   gridExpand = T,
@@ -177,7 +177,7 @@ openxlsx::addStyle(
 openxlsx::addStyle(
   wb,
   sheet = "data",
-  style = splstyle::excel_style_prop_to_perc_1,
+  style = csstyle::excel_style_prop_to_perc_1,
   rows = 2:100,
   cols = 5,
   gridExpand = T,
@@ -185,15 +185,15 @@ openxlsx::addStyle(
 )
 
 # set some of the third column to have a red background
-# you may also use the function splstyle::excel_style_background_yellow
+# you may also use the function csstyle::excel_style_background_yellow
 # these are just shortcuts for
-# splstyle::excel_style_risk_1_5(3, palette = "red")
-# splstyle::excel_style_risk_1_5(5, palette = "red")
+# csstyle::excel_style_risk_1_5(3, palette = "red")
+# csstyle::excel_style_risk_1_5(5, palette = "red")
 rows <- 1 + which(data[[3]] > 4)
 if(length(rows) > 0) openxlsx::addStyle(
   wb,
   sheet = "data",
-  style = splstyle::excel_style_background_red,
+  style = csstyle::excel_style_background_red,
   rows = rows,
   cols = 3,
   gridExpand = T,
@@ -206,7 +206,7 @@ rows <- 1 + 1:ncol(data)
 if(length(rows) > 0) openxlsx::addStyle(
   wb,
   sheet = "data",
-  style = splstyle::excel_style_risk_1_5(1, palette = "blue"),
+  style = csstyle::excel_style_risk_1_5(1, palette = "blue"),
   rows = rows,
   cols = 4,
   gridExpand = T,
@@ -218,7 +218,7 @@ rows <- 1 + which(data[[4]] > 1.3)
 if(length(rows) > 0) openxlsx::addStyle(
   wb,
   sheet = "data",
-  style = splstyle::excel_style_risk_1_5(3, palette = "blue"),
+  style = csstyle::excel_style_risk_1_5(3, palette = "blue"),
   rows = rows,
   cols = 4,
   gridExpand = T,
@@ -230,7 +230,7 @@ rows <- 1 + which(data[[4]] > 1.5)
 if(length(rows) > 0) openxlsx::addStyle(
   wb,
   sheet = "data",
-  style = splstyle::excel_style_risk_1_5(5, palette = "blue"),
+  style = csstyle::excel_style_risk_1_5(5, palette = "blue"),
   rows = rows,
   cols = 4,
   gridExpand = T,
@@ -243,7 +243,7 @@ rows <- 1 + 1:nrow(data)
 if(length(rows) > 0) openxlsx::addStyle(
   wb,
   sheet = "data",
-  style = splstyle::excel_style_risk_1_5(1, palette = "red"),
+  style = csstyle::excel_style_risk_1_5(1, palette = "red"),
   rows = rows,
   cols = 5,
   gridExpand = T,
@@ -255,7 +255,7 @@ rows <- 1 + which(data[[5]] > 0.1)
 if(length(rows) > 0) openxlsx::addStyle(
   wb,
   sheet = "data",
-  style = splstyle::excel_style_risk_1_5(2, palette = "red"),
+  style = csstyle::excel_style_risk_1_5(2, palette = "red"),
   rows = rows,
   cols = 5,
   gridExpand = T,
@@ -267,7 +267,7 @@ rows <- 1 + which(data[[5]] > 0.2)
 if(length(rows) > 0) openxlsx::addStyle(
   wb,
   sheet = "data",
-  style = splstyle::excel_style_risk_1_5(3, palette = "red"),
+  style = csstyle::excel_style_risk_1_5(3, palette = "red"),
   rows = rows,
   cols = 5,
   gridExpand = T,
@@ -279,7 +279,7 @@ rows <- 1 + which(data[[5]] > 0.3)
 if(length(rows) > 0) openxlsx::addStyle(
   wb,
   sheet = "data",
-  style = splstyle::excel_style_risk_1_5(4, palette = "red"),
+  style = csstyle::excel_style_risk_1_5(4, palette = "red"),
   rows = rows,
   cols = 5,
   gridExpand = T,
@@ -291,7 +291,7 @@ rows <- 1 + which(data[[5]] > 0.4)
 if(length(rows) > 0) openxlsx::addStyle(
   wb,
   sheet = "data",
-  style = splstyle::excel_style_risk_1_5(5, palette = "red"),
+  style = csstyle::excel_style_risk_1_5(5, palette = "red"),
   rows = rows,
   cols = 5,
   gridExpand = T,

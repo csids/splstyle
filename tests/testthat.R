@@ -1,4 +1,4 @@
 library(testthat)
-library(splstyle)
+library(csstyle)
 
-test_check("splstyle")
+test_check("csstyle")

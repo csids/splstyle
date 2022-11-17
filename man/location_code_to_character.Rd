@@ -6,8 +6,8 @@
 \usage{
 location_code_to_character(
   x,
-  label = splstyle::config$location_code_to_factor_label,
-  label_if_not_unique = splstyle::config$location_code_to_factor_label_if_not_unique,
+  label = csstyle::config$location_code_to_factor_label,
+  label_if_not_unique = csstyle::config$location_code_to_factor_label_if_not_unique,
   reference = fhidata::norway_locations_names(),
   direction = 1
 )

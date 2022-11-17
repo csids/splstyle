@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 
 Sometimes a visualisation is easier to read when using log2, log10 or log scale instead of the original scale, especially when the values are very large or skewed. However the y-axis labels will also be converted to the log scales. The functions here are developed for converting back to the original scale for readability. 
 
-The following options are included in `splstyle` package: 
+The following options are included in `csstyle` package: 
 
 - log 2 scale: `format_nor_invlog2_1`, `format_nor_invlog2_2`
 - log 10 scale: `format_nor_invlog10_1`, `format_nor_invlog10_2`
@@ -40,7 +40,7 @@ For instance, if you have plotted $y = log2(x)$, `format_nor_invlog2_1` formats 
 
 ```{r}
 library(ggplot2)
-library(splstyle)
+library(csstyle)
 library(spltime)
 library(magrittr)
 ```
@@ -97,9 +97,9 @@ q <- ggplot(dd, aes(x = week, y = deaths_n_observed, color = year))
 q <- q + geom_line(lwd = 1.3)
 q <- q + facet_wrap(~ location_code, nrow = 2, scale = 'free')
 # use fhi themes
-q <- q + splstyle::theme_fhi_basic(10)
-q <- q + splstyle::scale_color_fhi("", palette = "primary", direction = -1)
-q <- q + splstyle::theme_fhi_lines_horizontal()
+q <- q + csstyle::theme_fhi_basic(10)
+q <- q + csstyle::scale_color_fhi("", palette = "primary", direction = -1)
+q <- q + csstyle::theme_fhi_lines_horizontal()
 q <- q + guides(color = guide_legend(reverse = FALSE))
 q <- q + labs(title = "Observed deaths (simulated data)", 
               x = "Week",
@@ -134,10 +134,10 @@ q <- q + geom_line(lwd = 1.3)
 q <- q + geom_hline(yintercept = 1, lty = 2)
 q <- q + facet_wrap(~ location_code, nrow = 1, scale = 'free')
 
-q <- q + splstyle::theme_fhi_basic(10)
-q <- q + splstyle::scale_color_fhi("", palette = "primary", direction = -1)
+q <- q + csstyle::theme_fhi_basic(10)
+q <- q + csstyle::scale_color_fhi("", palette = "primary", direction = -1)
 q <- q + guides(color = guide_legend(reverse = FALSE))
-q <- q + scale_y_continuous(breaks = splstyle::pretty_breaks(8),
+q <- q + scale_y_continuous(breaks = csstyle::pretty_breaks(8),
                             labels = format_nor_num_2,
                             lim = c(0, max_val*1.2))
 q <- q + labs(title = "Ratio of cumulative observed versus expected mortality (simulated data)", 
@@ -158,10 +158,10 @@ q <- q + geom_line(lwd = 1.3)
 q <- q + geom_hline(yintercept = 0, lty = 2)
 q <- q + facet_wrap(~ location_code, scale = 'free')
 
-q <- q + splstyle::theme_fhi_basic(10)
-q <- q + splstyle::scale_color_fhi("", palette = "primary", direction = -1)
+q <- q + csstyle::theme_fhi_basic(10)
+q <- q + csstyle::scale_color_fhi("", palette = "primary", direction = -1)
 q <- q + guides(color = guide_legend(reverse = FALSE))
-q <- q + scale_y_continuous(breaks = splstyle::pretty_breaks(9),
+q <- q + scale_y_continuous(breaks = csstyle::pretty_breaks(9),
                             labels = format_nor_invlog2_2,
                             lim = c(-max_val, max_val))
 q <- q + labs(title = "Ratio of cumulative observed versus expected mortality (simulated data)", 

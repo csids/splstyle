@@ -44,7 +44,7 @@
 
 \item{var_y}{The name of the variable to use on the y-axis of the graph}
 
-\item{breaks_x}{Use splstyle::every_nth() to choose how many ticks to show on the x-axis}
+\item{breaks_x}{Use csstyle::every_nth() to choose how many ticks to show on the x-axis}
 
 \item{lab_x}{The label of the x-axis}
 
@@ -54,11 +54,11 @@
 
 \item{lab_sub}{The subtitle of the graph}
 
-\item{lab_caption}{If not specified, splstyle::fhi_caption() is used as the lab_caption.}
+\item{lab_caption}{If not specified, csstyle::fhi_caption() is used as the lab_caption.}
 
 \item{lab_date}{How the dates on the x-axis should be formatted if var_x = "date"}
 
-\item{format_y}{How the y-axis ticks should be formatted. For example splstyle::format_nor_num_0 or splstyle::format_nor_perc_0}
+\item{format_y}{How the y-axis ticks should be formatted. For example csstyle::format_nor_num_0 or csstyle::format_nor_perc_0}
 
 \item{scale_y}{How to scale the y-axis if the graph is split with facet_wrap. Free or fixed.}
 
