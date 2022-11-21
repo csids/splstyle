@@ -1,11 +1,11 @@
-# csstyle <a href="https://docs.sykdomspulsen.no/csstyle/"><img src="man/figures/logo.png" align="right" width="120" /></a>
+# csstyle <a href="https://www.csids.no/csstyle/"><img src="man/figures/logo.png" align="right" width="120" /></a>
 
 
 ## Overview 
 
-[csstyle](https://docs.sykdomspulsen.no/csstyle/) contains helpful functions for creating outputs in the style(s) used by FHI and Sykdomspulsen.
+[csstyle](https://www.csids.no/csstyle/) contains helpful functions for creating outputs in the style(s) used by FHI and Sykdomspulsen.
 
-Read the introduction vignette [here](http://docs.sykdomspulsen.no/org/articles/csstyle.html) or run `help(package="csstyle")`.
+Read the introduction vignette [here](http://www.csids.no/org/articles/csstyle.html) or run `help(package="csstyle")`.
 
 ## csverse
 

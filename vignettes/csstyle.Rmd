@@ -1,13 +1,13 @@
 ---
-title: "Introduction to csstyle"
-author: "Richard White, Chi Zhang"
+title: "csstyle"
+author: "Richard Aubrey White, Chi Zhang"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     fig_width: 6
     fig_height: 6
 vignette: >
-  %\VignetteIndexEntry{Introduction to csstyle}
+  %\VignetteIndexEntry{csstyle}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
