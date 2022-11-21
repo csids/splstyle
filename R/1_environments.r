@@ -378,28 +378,28 @@ vals$pals$contrast_7 <- c(
 )
 
 vals$pals$combination_1 <- c(
-  colors$v1$primary["B2"]
+  colors$v1$primary["R2"]
 )
 vals$pals$combination_2 <- c(
-  colors$v1$primary["B2"],
-  colors$v1$secondary["R2"]
+  colors$v1$primary["R2"],
+  colors$v1$secondary["B2"]
 )
 vals$pals$combination_3 <- c(
-  colors$v1$primary["B2"],
   colors$v1$secondary["R2"],
-  colors$v1$primary["B4"]
+  colors$v1$primary["B2"],
+  colors$v1$primary["R4"]
 )
 vals$pals$combination_4 <- c(
-  colors$v1$primary["B2"],
   colors$v1$secondary["R2"],
-  colors$v1$primary["B4"],
-  colors$v1$secondary["R4"]
+  colors$v1$primary["B2"],
+  colors$v1$secondary["R4"],
+  colors$v1$primary["B4"]
 )
 vals$pals$combination_5 <- c(
-  colors$v1$primary["B2"],
   colors$v1$secondary["R2"],
-  colors$v1$primary["B4"],
+  colors$v1$primary["B2"],
   colors$v1$secondary["R4"],
+  colors$v1$primary["B4"],
   colors$v1$primary["B6"]
 )
 
