@@ -9,7 +9,7 @@ location_code_to_factor <- function(
   x,
   label = csstyle::config$location_code_to_factor_label, # location_name
   label_if_not_unique = csstyle::config$location_code_to_factor_label_if_not_unique, # location_name_description_nb
-  reference = fhidata::norway_locations_names(),
+  reference = csdata::nor_locations_names(),
   direction = 1
 ){
   new_labels_x <- reference[[label]][reference$location_code %in% x]

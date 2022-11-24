@@ -138,8 +138,8 @@ make_line_threshold_plot <- function(pd,
 
   q <- q + scale_y_continuous("")
   fill_labels <- c(
-    glue::glue("Betydelig h{fhi::nb$oe}syere enn forventet"),
-    glue::glue("H{fhi::nb$oe}syere enn forventet"),
+    glue::glue("Betydelig h{csdata::nb$oe}syere enn forventet"),
+    glue::glue("H{csdata::nb$oe}syere enn forventet"),
     "Forventet"
   )
   fill_values <- GetCols()

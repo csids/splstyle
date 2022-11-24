@@ -19,7 +19,7 @@ format_ages <- function(x){
 
   # if there was just 000 after the hyphen, it is now empty, so we need to put a zero back in
   age_labels <- stringr::str_replace_all(age_labels, "\\-$", "-")
-  age_labels <- paste0(age_labels, " ", fhidata::nb$aa,"r")
+  age_labels <- paste0(age_labels, " ", csdata::nb$aa,"r")
 
   return(factor(x, levels = age_levels, labels = age_labels))
 }

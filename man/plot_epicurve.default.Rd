@@ -13,7 +13,7 @@
   facet_ncol = NULL,
   var_x = "isoyearweek",
   var_y,
-  breaks_x = fhiplot::every_nth(n = 2),
+  breaks_x = csstyle::every_nth(n = 2),
   lab_x = NULL,
   lab_y = NULL,
   lab_main = NULL,

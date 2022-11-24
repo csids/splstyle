@@ -39,7 +39,7 @@ dates <- sample(seq.Date(as.Date("2018-01-01"),
                 20000, 
                 replace = T)
 d <- expand.grid(
-  location_code=unique(fhidata::norway_locations_b2020$county_code),
+  location_code=csdata::nor_locations_names()[granularity_geo=="county"]$location_code,
   date = dates
 )
 # Convert to data.table
@@ -76,7 +76,7 @@ print(d)
 
 # create skeleton
 skeleton <- data.table(expand.grid(
-  location_code = unique(fhidata::norway_locations_b2020$county_code),
+  location_code = csdata::nor_locations_names()[granularity_geo=="county"]$location_code,
   date = seq.Date(min(d$date), max(d$date), 1)
 ))
 
@@ -94,7 +94,7 @@ We can also create a weekly dataset:
 
 ```{r}
 # create 3 new variables:
-d[, isoyearweek := fhi::isoyearweek(date)]
+d[, isoyearweek := cstime::date_to_isoyearweek_c(date)]
 
 # aggregate down to weekly level
 w <- d[,

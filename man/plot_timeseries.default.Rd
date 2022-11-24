@@ -61,7 +61,7 @@
 
 \item{legend_direction}{layout of items in legend ("horizontal" or "vertical")}
 
-\item{format_y}{How the y-axis ticks should be formatted. For example csstyle::format_nor_num_0 or fhiplot::format_nor_perc_0}
+\item{format_y}{How the y-axis ticks should be formatted. For example csstyle::format_nor_num_0 or csstyle::format_nor_perc_0}
 
 \item{facet_wrap}{What column in the dataset to use to split the dataset.}
 

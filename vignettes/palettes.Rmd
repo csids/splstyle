@@ -35,7 +35,7 @@ csstyle::display_all_palettes()
 ## Maps
 
 ```{r}
-pd <- fhimaps::norway_nuts3_map_b2020_insert_oslo_dt
+pd <- csmaps::nor_county_map_b2020_insert_oslo_dt
 data <- unique(pd[,c("location_code")])
 suppressWarnings(data[,category:=rep(c("Good","Normal","Neutral","Bad","Very Bad"),each=4)[1:.N]])
 data[,category_with_missing:=category]

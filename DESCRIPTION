@@ -1,11 +1,14 @@
 Package: csstyle
-Title: Outputs in the Style(s) used by FHI and Sykdomspulsen
+Title: Standardizing Outputs
 Version: 2020.5.25
 Authors@R: c(
   person(c("Celine","Victoria"), "Berg-Hansen", email = "celinevictoria.berg-hansen@fhi.no", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-0033-2019")),
   person(c("Richard","Aubrey"), "White", email = "hello@rwhite.no", role = c("aut"), comment = c(ORCID = "0000-0002-6747-1726"))
   )
-Description: Helpful functions for creating outputs in the style(s) used by FHI and Sykdomspulsen.
+Description: A system for standardizing outputs (e.g. graphs, tables, reports). 
+    The standard tools for producing output are too flexible, allowing for too much variation 
+    and making it difficult to produce consistent outputs. This package focuses on producing
+    a few limited outputs that consistently look the same.
 Depends: R (>= 3.3.0)
 License: MIT
 URL: https://www.csids.no/csstyle/, https://github.com/csids/csstyle
@@ -22,8 +25,7 @@ Imports: data.table,
     rstudioapi,
     stringi,
     stringr, 
-    scales,
-    fhiplot
+    scales
 Suggests: testthat,
     knitr,
     rmarkdown,
@@ -31,8 +33,7 @@ Suggests: testthat,
     glue,
     lemon,
     fhi,
-    fhidata,
-    fhimaps,
-    spltime
+    csdata,
+    csmaps
 RoxygenNote: 7.1.2
 VignetteBuilder: knitr

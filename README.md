@@ -1,9 +1,8 @@
 # csstyle <a href="https://www.csids.no/csstyle/"><img src="man/figures/logo.png" align="right" width="120" /></a>
 
-
 ## Overview 
 
-[csstyle](https://www.csids.no/csstyle/) contains helpful functions for creating outputs in the style(s) used by FHI and Sykdomspulsen.
+[csstyle](https://www.csids.no/csstyle/) is a system for standardizing outputs (e.g. graphs, tables, reports). The standard tools for producing output are too flexible, allowing for too much variation and making it difficult to produce consistent outputs. This package focuses on producing a few limited outputs that consistently look the same.
 
 Read the introduction vignette [here](http://www.csids.no/org/articles/csstyle.html) or run `help(package="csstyle")`.
 

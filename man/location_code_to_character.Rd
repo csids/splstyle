@@ -8,7 +8,7 @@ location_code_to_character(
   x,
   label = csstyle::config$location_code_to_factor_label,
   label_if_not_unique = csstyle::config$location_code_to_factor_label_if_not_unique,
-  reference = fhidata::norway_locations_names(),
+  reference = csdata::nor_locations_names(),
   direction = 1
 )
 }

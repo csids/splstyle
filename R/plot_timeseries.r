@@ -24,7 +24,7 @@ plot_timeseries <- function(x,
 #' @param lab_legend The label of the legend.
 #' @param legend_position The position the legend should have. If not specified, "bottom" is used.
 #' @param legend_direction layout of items in legend ("horizontal" or "vertical")
-#' @param format_y How the y-axis ticks should be formatted. For example csstyle::format_nor_num_0 or fhiplot::format_nor_perc_0
+#' @param format_y How the y-axis ticks should be formatted. For example csstyle::format_nor_num_0 or csstyle::format_nor_perc_0
 #' @param facet_wrap What column in the dataset to use to split the dataset.
 #' @param facet_ncol How many columns with graphs if facet_wrap is used.
 #' @param palette What palette to use for the lines. The default is "primary".
