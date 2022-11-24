@@ -54,7 +54,8 @@ d
 # granularity time: isoweek
 week <- d[,.(
   covid19_cases_testdate_n = sum(covid19_cases_testdate_n),
-  covid19_cases_testdate_pr100000 = sum(covid19_cases_testdate_pr100000)
+  covid19_cases_testdate_pr100000 = sum(covid19_cases_testdate_pr100000),
+  granularity_time = "isoweek"
 ),
 keyby=.(
   location_code,
@@ -67,19 +68,20 @@ keyby=.(
 
 week
 
-
 colnames(d)
 colnames(week)
 
 # put daily and weekly together
-norway_covid19_cases_by_time_location <- rbind(d, week)
+nor_covid19_cases_by_time_location <- rbind(d, week)
 
+nor_covid19_cases_by_time_location[, location_code := stringr::str_replace(location_code, "county", "county_nor")]
+nor_covid19_cases_by_time_location[location_code=="norge", location_code := "nation_nor"]
 
 # save the data into data folder in .rda format
-usethis::use_data(norway_covid19_cases_by_time_location, overwrite = TRUE)
+usethis::use_data(nor_covid19_cases_by_time_location, overwrite = TRUE)
 
 
-# ?spltidy::norway_covid19_cases_by_time_location
+# ?spltidy::nor_covid19_cases_by_time_location
 
 
 

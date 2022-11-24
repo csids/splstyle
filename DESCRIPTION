@@ -1,6 +1,6 @@
 Package: csstyle
 Title: Standardizing Outputs
-Version: 2020.5.25
+Version: 2022.11.24
 Authors@R: c(
   person(c("Celine","Victoria"), "Berg-Hansen", email = "celinevictoria.berg-hansen@fhi.no", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-0033-2019")),
   person(c("Richard","Aubrey"), "White", email = "hello@rwhite.no", role = c("aut"), comment = c(ORCID = "0000-0002-6747-1726"))
@@ -10,7 +10,7 @@ Description: A system for standardizing outputs (e.g. graphs, tables, reports).
     and making it difficult to produce consistent outputs. This package focuses on producing
     a few limited outputs that consistently look the same.
 Depends: R (>= 3.3.0)
-License: MIT
+License: MIT + file LICENSE
 URL: https://www.csids.no/csstyle/, https://github.com/csids/csstyle
 BugReports: https://github.com/csids/csstyle/issues
 Encoding: UTF-8
@@ -32,8 +32,8 @@ Suggests: testthat,
     rstudioapi,
     glue,
     lemon,
-    fhi,
     csdata,
-    csmaps
+    csmaps,
+    cstime
 RoxygenNote: 7.1.2
 VignetteBuilder: knitr

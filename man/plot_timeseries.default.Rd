@@ -87,7 +87,7 @@
 If the dataset is already long it needs to include the following columns: variable, name_outcome and n.
 }
 \examples{
-plot_timeseries(norway_covid19_cases_by_time_location[granularity_geo == "nation" & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = csstyle::pretty_breaks(5))
-plot_timeseries(norway_covid19_cases_by_time_location[location_code \%in\% c("county03", "county18", "county30", "county54") & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = csstyle::pretty_breaks(5), facet_wrap = "location_code")
-plot_timeseries(norway_covid19_cases_by_time_location[granularity_geo == "county" & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = csstyle::pretty_breaks(5), var_group = "location_code")
+plot_timeseries(nor_covid19_cases_by_time_location[granularity_geo == "nation" & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = csstyle::pretty_breaks(5))
+plot_timeseries(nor_covid19_cases_by_time_location[location_code \%in\% c("county_nor03", "county_nor18", "county_nor30", "county_nor54") & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = csstyle::pretty_breaks(5), facet_wrap = "location_code")
+plot_timeseries(nor_covid19_cases_by_time_location[granularity_geo == "county" & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = csstyle::pretty_breaks(5), var_group = "location_code")
 }

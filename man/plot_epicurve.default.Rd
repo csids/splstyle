@@ -72,7 +72,7 @@
 Epicurve
 }
 \examples{
-plot_epicurve(norway_covid19_cases_by_time_location[location_code == "county03"], type = "single", var_y = "covid19_cases_testdate_n")
-plot_epicurve(norway_covid19_cases_by_time_location[granularity_geo == "county"], type = "stacked", fill_var = "location_code", var_y = "covid19_cases_testdate_n")
-plot_epicurve(norway_covid19_cases_by_time_location[granularity_geo == "county" & location_code \%in\% c("county34", "county38", "county11")], type = "dodged", fill_var = "location_code", var_y = "covid19_cases_testdate_n")
+plot_epicurve(nor_covid19_cases_by_time_location[location_code == "county_nor03"], type = "single", var_y = "covid19_cases_testdate_n")
+plot_epicurve(nor_covid19_cases_by_time_location[granularity_geo == "county"], type = "stacked", fill_var = "location_code", var_y = "covid19_cases_testdate_n")
+plot_epicurve(nor_covid19_cases_by_time_location[granularity_geo == "county" & location_code \%in\% c("county_nor34", "county_nor38", "county_nor11")], type = "dodged", fill_var = "location_code", var_y = "covid19_cases_testdate_n")
 }

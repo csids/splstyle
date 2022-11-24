@@ -1,10 +1,14 @@
 ---
 title: "Tables"
+author: "Richard Aubrey White"
+date: "2020-06-14"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Tables}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}

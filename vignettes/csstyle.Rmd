@@ -1,13 +1,13 @@
 ---
-title: "csstyle"
+title: "Introduction to csstyle"
 author: "Richard Aubrey White, Chi Zhang"
-date: "`r Sys.Date()`"
+date: "2021-02-10"
 output:
   rmarkdown::html_vignette:
     fig_width: 6
     fig_height: 6
 vignette: >
-  %\VignetteIndexEntry{csstyle}
+  %\VignetteIndexEntry{Introduction to csstyle}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -46,10 +46,17 @@ We generally start with a linelist dataset (make sure it is a `data.table`!).
 
 ```{r}
 set.seed(4)
-dates <- sample(seq.Date(as.Date("2018-01-01"), 
-                         as.Date("2018-02-08"), 1),
-                20000, 
-                replace = T)
+
+dates <- sample(
+  seq.Date(
+    as.Date("2018-01-01"), 
+    as.Date("2018-02-08"),
+    1
+  ),
+  20000, 
+  replace = T
+)
+
 d <- expand.grid(
   location_code=csdata::nor_locations_names()[granularity_geo=="county"]$location_code,
   date = dates
@@ -123,10 +130,10 @@ print(w)
 
 ## Graphs for one geographical area
 
-Daily epicurve for `county01`
+Daily epicurve for `county_nor03`
 
 ```{r}
-q <- ggplot(d[location_code=="county03"], aes(x = date, y = N))
+q <- ggplot(d[location_code=="county_nor03"], aes(x = date, y = N))
 q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
 q <- q + scale_x_date("Date")
 q <- q + scale_y_continuous("Number of reported cases",
@@ -139,10 +146,10 @@ q <- q + csstyle::theme_fhi_lines_horizontal()
 q
 ```
 
-Weekly epicurve for `county01`
+Weekly epicurve for `county_nor03`
 
 ```{r}
-q <- ggplot(w[location_code=="county03"], aes(x = isoyearweek, y = N))
+q <- ggplot(w[location_code=="county_nor03"], aes(x = isoyearweek, y = N))
 q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
 q <- q + scale_x_discrete("Isoweek")
 q <- q + scale_y_continuous("Number of reported cases",
@@ -220,11 +227,11 @@ Sometimes you would like to add colours to differentiate between different varia
 
 ```{r}
 q <- ggplot(w[location_code %in% c(
-  "county03",
-  "county11",
-  "county15",
-  "county30",
-  "county34")], 
+  "county_nor03",
+  "county_nor11",
+  "county_nor15",
+  "county_nor30",
+  "county_nor34")], 
   aes(x = isoyearweek, y = N, fill = location_code))
 q <- q + geom_col(width = 0.8)
 q <- q + csstyle::scale_fill_fhi("Location",palette="primary")
@@ -245,7 +252,7 @@ q
 Sometimes you would like to add colours to differentiate between different variables. This can be done through the `fill` attribute.
 
 ```{r}
-pd <- w[location_code %in% "county03"]
+pd <- w[location_code %in% "county_nor03"]
 pd[, cum_n := cumsum(N)]
 
 pd[, value_left := N]
