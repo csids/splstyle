@@ -53,8 +53,8 @@ library(magrittr)
 We simulate some fictional data for demonstration. We simulate 2-year weekly data of mortality cases in two locations, county A and county B. The count of cases follow the Poisson distribution with different $\lambda$. For county A $\lambda_{observed} = 1000, \lambda_{expected} = 500$. For county B $\lambda_{observed} = 1000, \lambda_{expected} = 2000$. 
 
 ```{r}
-yrwk_19_20 <- cstime::world_dates_isoyearweek[year %in% c(2019, 2020),
-                                               .(year, yrwk)]
+yrwk_19_20 <- cstime::dates_by_isoyearweek[isoyear %in% c(2019, 2020),
+                                               .(isoyear, isoyearweek)]
 
 simulate_case <- function(yrwk_df, lambda_expected, lambda_observed, location_code){
   nweeks <- nrow(yrwk_df)
@@ -89,8 +89,8 @@ First we visualise the fictional observed death over 2 years.
 ```{r}
 # separate the yrwk string to produce week id
 
-dd$week <- spltime::isoyearweek_to_isoweek_n(dd$yrwk)
-dd$year <- as.factor(dd$year)
+dd$week <- cstime::isoyearweek_to_isoweek_n(dd$isoyearweek)
+dd$year <- as.factor(dd$isoyear)
 
 # plot cases
 q <- ggplot(dd, aes(x = week, y = deaths_n_observed, color = year))
