@@ -53,7 +53,7 @@ library(magrittr)
 We simulate some fictional data for demonstration. We simulate 2-year weekly data of mortality cases in two locations, county A and county B. The count of cases follow the Poisson distribution with different $\lambda$. For county A $\lambda_{observed} = 1000, \lambda_{expected} = 500$. For county B $\lambda_{observed} = 1000, \lambda_{expected} = 2000$. 
 
 ```{r}
-yrwk_19_20 <- fhidata::world_dates_isoyearweek[year %in% c(2019, 2020),
+yrwk_19_20 <- cstime::world_dates_isoyearweek[year %in% c(2019, 2020),
                                                .(year, yrwk)]
 
 simulate_case <- function(yrwk_df, lambda_expected, lambda_observed, location_code){
