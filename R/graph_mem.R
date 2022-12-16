@@ -17,6 +17,14 @@ make_influenza_threshold_chart <- function(data, title, lang = "NB", weeks = c(4
   high <- NULL
   very_high <- NULL
   rate <- NULL
+  low_p <- NULL
+  high_p <- NULL
+  x <- NULL
+  y <- NULL
+  text <- NULL
+  stat_stepribbon <- NULL
+  low_n <- NULL
+  high_n <- NULL
 
   first_year <- min(data[, year])
   second_year <- max(data[, year])

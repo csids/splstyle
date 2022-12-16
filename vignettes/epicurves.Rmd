@@ -43,7 +43,7 @@ d <- expand.grid(
   date = dates
 )
 # Convert to data.table
-setDT(d)
+data.table::setDT(d)
 
 # print
 print(d)
@@ -59,7 +59,7 @@ We now:
 
 ```{r}
 # Convert to data.table
-setDT(d)
+data.table::setDT(d)
 
 # aggregate
 d <- d[,
@@ -75,7 +75,7 @@ d <- d[,
 print(d)
 
 # create skeleton
-skeleton <- data.table(expand.grid(
+skeleton <- data.table::data.table(expand.grid(
   location_code = csdata::nor_locations_names()[granularity_geo=="county"]$location_code,
   date = seq.Date(min(d$date), max(d$date), 1)
 ))

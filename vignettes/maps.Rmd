@@ -1,6 +1,6 @@
 ---
 title: "Maps with inset"
-author: "Author"
+author: "Chi Zhang"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:

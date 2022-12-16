@@ -67,6 +67,8 @@ plot_timeseries.default <- function(x,
                             ...
                             ) {
 
+  n <- NULL
+  name_outcome <- NULL
 
   if(wide_table){
     d <- melt(x,
