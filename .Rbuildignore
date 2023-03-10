@@ -3,3 +3,5 @@
 Makefile
 data-raw
 vignettes2
+^doc$
+^Meta$
