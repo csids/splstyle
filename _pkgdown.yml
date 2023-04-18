@@ -2,3 +2,18 @@ url: https://www.csids.no/csstyle/
 
 template:
   package: csidstemplatepkgdown
+
+# reference:
+# - title: ggplot2
+# - subtitle: Themes
+#   contents: starts_with("theme")
+# - title: Styles/Formatting
+# - subtitle: Format
+#   contents:
+#   - starts_with("format")
+# - subtitle: Excel
+#   contents:
+#   - starts_with("excel")
+# - subtitle: htmltable
+#   contents:
+#   - starts_with("htmltable")

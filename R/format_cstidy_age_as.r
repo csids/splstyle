@@ -1,10 +1,11 @@
-#' format_ages
+#' Formats a cstidy age as a factor
 #' @param x a string (or multiple strings) with an age or an age group
 #' @examples
-#' format_ages("009")
-#' format_ages("005-014")
+#' csstyle::format_cstidy_age_as_factor("009")
+#' csstyle::format_cstidy_age_as_factor("005-014")
+#' @rdname format_cstidy_age_as
 #' @export
-format_ages <- function(x){
+format_cstidy_age_as_factor <- function(x){
   age_levels <- unique(x)
   age_levels <- sort(age_levels)
 
@@ -22,4 +23,15 @@ format_ages <- function(x){
   age_labels <- paste0(age_labels, " ", csdata::nb$aa,"r")
 
   return(factor(x, levels = age_levels, labels = age_labels))
+}
+
+#' Formats a cstidy age as a character
+#' @param x a string (or multiple strings) with an age or an age group
+#' @examples
+#' csstyle::format_cstidy_age_as_character("009")
+#' csstyle::format_cstidy_age_as_character("005-014")
+#' @rdname format_cstidy_age_as
+#' @export
+format_cstidy_age_as_character <- function(x){
+  return(as.character(format_cstidy_age_as_factor(x)))
 }

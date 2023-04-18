@@ -1,3 +1,3 @@
-# csstyle 2022.1.17
+# Version 2023.4.18
 
-Creation of package.
+- Consistent renaming of formatting functions. 

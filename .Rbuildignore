@@ -5,3 +5,4 @@ data-raw
 vignettes2
 ^doc$
 ^Meta$
+dev
