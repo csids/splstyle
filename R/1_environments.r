@@ -1,19 +1,17 @@
-#' Config
-#' @export
-config <- new.env()
-config$location_code_to_factor_label <- "location_name"
-config$location_code_to_factor_label_if_not_unique <- "location_name_description_nb"
+global <- new.env()
+global$location_code_to_factor_label <- "location_name"
+global$location_code_to_factor_label_if_not_unique <- "location_name_description_nb"
 
-#' set_config
+#' set_global
 #' @param location_code_to_factor_label The label
 #' @param location_code_to_factor_label_if_not_unique The label if something is not unique with the first laben
 #' @export
-set_config <- function(
+set_global <- function(
   location_code_to_factor_label = "location_name",
   location_code_to_factor_label_if_not_unique = "location_name_description_nb"
   ){
-  config$location_code_to_factor_label <- location_code_to_factor_label
-  config$location_code_to_factor_label_if_not_unique <- location_code_to_factor_label_if_not_unique
+  global$location_code_to_factor_label <- location_code_to_factor_label
+  global$location_code_to_factor_label_if_not_unique <- location_code_to_factor_label_if_not_unique
 }
 
 #' Colors

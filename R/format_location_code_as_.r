@@ -8,11 +8,15 @@
 #' @export
 format_location_code_as_factor <- function(
   x,
-  label = csstyle::config$location_code_to_factor_label, # location_name
-  label_if_not_unique = csstyle::config$location_code_to_factor_label_if_not_unique, # location_name_description_nb
+  label = NULL, # location_name
+  label_if_not_unique = NULL, # location_name_description_nb
   reference = csdata::nor_locations_names(),
   direction = 1
 ){
+
+  if(is.null(label)) label <- global$location_code_to_factor_label
+  if(is.null(label_if_not_unique)) label <- global$location_code_to_factor_label_if_not_unique
+
   new_labels_x <- reference[[label]][reference$location_code %in% x]
   location_order_x <- reference$location_order[reference$location_code %in% x]
   levels_x <- reference$location_code[reference$location_code %in% x]
@@ -53,11 +57,14 @@ format_location_code_as_factor <- function(
 #' @export
 format_location_code_as_character <- function(
     x,
-    label = csstyle::config$location_code_to_factor_label, # location_name
-    label_if_not_unique = csstyle::config$location_code_to_factor_label_if_not_unique, # location_name_description_nb
+    label = NULL, # location_name
+    label_if_not_unique = NULL, # location_name_description_nb
     reference = csdata::nor_locations_names(),
     direction = 1
 ){
+
+  if(is.null(label)) label <- global$location_code_to_factor_label
+  if(is.null(label_if_not_unique)) label <- global$location_code_to_factor_label_if_not_unique
 
   retval <- format_location_code_as_factor(
     x = x,
