@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 ## Checklist
 
 - Make sure that your dataset contains all days/weeks (i.e. there can be days/weeks with 0 cases)
-- Use `q <- q + csstyle::theme_fhi_lines_horizontal()`
+- Use `q <- q + csstyle::theme_cs()`
 - Use `q <- q + geom_col(fill = csstyle::base_color, width = 0.8)`
 - For `scale_y_continuous` use `breaks = csstyle::pretty_breaks(5)`
 - For `scale_y_continuous` use `expand = expansion(mult = c(0, 0.1))`
@@ -37,146 +37,63 @@ If multiple geographical areas:
 ```{r}
 library(ggplot2)
 library(data.table)
-library(csstyle)
-```
-
-## Data
-
-We generally start with a linelist dataset (make sure it is a `data.table`!).
-
-```{r}
-set.seed(4)
-
-dates <- sample(
-  seq.Date(
-    as.Date("2018-01-01"), 
-    as.Date("2018-02-08"),
-    1
-  ),
-  20000, 
-  replace = T
-)
-
-d <- expand.grid(
-  location_code=csdata::nor_locations_names()[granularity_geo=="county"]$location_code,
-  date = dates
-)
-# Convert to data.table
-setDT(d)
-
-# print
-print(d)
-```
-
-We now:
-
-1. Convert this into a `data.table` (in case it isn't already)
-2. Aggregate it to daily data (this dataset doesn't contain any days with 0 cases)
-3. Create a 'skeleton' dataset that contains all days from the first to last day
-4. Merge the two datasets together (so you now have a dataset that contains days with 0 cases)
-5. Fill in 'missing' N's with 0 (they are the dates that came from the skeleton dataset)
-
-```{r}
-# Convert to data.table
-setDT(d)
-
-# aggregate
-d <- d[,
-  .(
-    N = .N
-  ),
-  keyby = .(
-    location_code,
-    date
-  )
-]
-# aggregated daily dataset that does not contain days with 0 cases
-print(d)
-
-# create skeleton
-skeleton <- data.table(expand.grid(
-  location_code = csdata::nor_locations_names()[granularity_geo=="county"]$location_code,
-  date = seq.Date(min(d$date), max(d$date), 1)
-))
-
-# merge the two datasets together
-d <- merge(d, skeleton, by=c("location_code", "date"), all=T)
-
-# Fill in 'missing' Ns with 0
-d[is.na(N), N := 0]
-
-# Now you have a clean aggregated daily dataset that contains days with 0 cases!
-print(d)
-```
-
-We can also create a weekly dataset:
-
-```{r}
-# create 3 new variables:
-d[, isoyearweek := cstime::date_to_isoyearweek_c(date)]
-
-# aggregate down to weekly level
-w <- d[,
-  .(
-    N = sum(N)
-  ),
-  keyby = .(
-    location_code,
-    isoyearweek
-  )
-]
-print(w)
 ```
 
 ## Graphs for one geographical area
 
 Daily epicurve for `county_nor03`
 
-```{r}
-q <- ggplot(d[location_code=="county_nor03"], aes(x = date, y = N))
-q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
-q <- q + scale_x_date("Date")
-q <- q + scale_y_continuous("Number of reported cases",
-  breaks = csstyle::pretty_breaks(5),
-  expand = expansion(mult = c(0, 0.1))
-)
-q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
-q <- q + labs(caption = fhi_caption())
-q <- q + csstyle::theme_fhi_lines_horizontal()
-q
+```{r warning=FALSE}
+# q <- ggplot(
+#   covidnor::total[location_code=="nation_nor" & granularity_time=="day" & isoyear==2020], 
+#   aes(
+#     x = date, 
+#     y = hospital_admissions_main_cause_n
+#   )
+# )
+# q <- q + geom_col(width = 0.8, fill = csstyle::colors$base)
+# q <- q + scale_x_date("Testing date")
+# q <- q + scale_y_continuous("Number of reported cases",
+#   breaks = csstyle::pretty_breaks(5),
+#   expand = expansion(mult = c(0, 0.1))
+# )
+# q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
+# #q <- q + labs(caption = fhi_caption())
+# q <- q + csstyle::theme_cs()
+# q
 ```
 
 Weekly epicurve for `county_nor03`
 
 ```{r}
-q <- ggplot(w[location_code=="county_nor03"], aes(x = isoyearweek, y = N))
-q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
-q <- q + scale_x_discrete("Isoweek")
-q <- q + scale_y_continuous("Number of reported cases",
-  breaks = csstyle::pretty_breaks(5),
-  expand = expansion(mult = c(0, 0.1))
-)
-q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
-q <- q + labs(caption = fhi_caption())
-q <- q + csstyle::theme_fhi_lines_horizontal()
-q
+# q <- ggplot(w[location_code=="county_nor03"], aes(x = isoyearweek, y = N))
+# q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
+# q <- q + scale_x_discrete("Isoweek")
+# q <- q + scale_y_continuous("Number of reported cases",
+#   breaks = csstyle::pretty_breaks(5),
+#   expand = expansion(mult = c(0, 0.1))
+# )
+# q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
+# q <- q + labs(caption = fhi_caption())
+# q <- q + csstyle::theme_fhi_lines_horizontal()
+# q
 ```
 
 Weekly epicurve with vertical x-axis labels
 
 ```{r}
-q <- ggplot(w, aes(x = isoyearweek, y = N))
-q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
-q <- q + scale_x_discrete("Isoweek")
-q <- q + scale_y_continuous("Number of reported cases",
-  breaks = csstyle::pretty_breaks(5),
-  expand = expansion(mult = c(0, 0.1))
-)
-q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
-q <- q + labs(caption = fhi_caption())
-q <- q + csstyle::theme_fhi_lines_horizontal()
-q <- q + csstyle::set_x_axis_vertical()
-q
+# q <- ggplot(w, aes(x = isoyearweek, y = N))
+# q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
+# q <- q + scale_x_discrete("Isoweek")
+# q <- q + scale_y_continuous("Number of reported cases",
+#   breaks = csstyle::pretty_breaks(5),
+#   expand = expansion(mult = c(0, 0.1))
+# )
+# q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
+# q <- q + labs(caption = fhi_caption())
+# q <- q + csstyle::theme_fhi_lines_horizontal()
+# q <- q + csstyle::set_x_axis_vertical()
+# q
 ```
 
 ## Epicurves for multiple geographical areas
@@ -186,39 +103,39 @@ When we have multiple geographical areas, we use the function `lemon::facet_rep_
 Daily epicurve for all geographical areas with vertical x-axis labels
 
 ```{r fig.height=10, fig.width=8}
-q <- ggplot(d, aes(x = date, y = N))
-q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
-q <- q + lemon::facet_rep_wrap(~location_code, repeat.tick.labels = "y")
-q <- q + csstyle::scale_fill_fhi("Location",palette="primary")
-q <- q + scale_x_date("Date")
-q <- q + scale_y_continuous("Number of reported cases",
-  breaks = csstyle::pretty_breaks(5),
-  expand = expansion(mult = c(0, 0.1))
-)
-q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
-q <- q + labs(caption = fhi_caption())
-q <- q + csstyle::theme_fhi_lines_horizontal()
-q <- q + csstyle::set_x_axis_vertical()
-q
+# q <- ggplot(d, aes(x = date, y = N))
+# q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
+# q <- q + lemon::facet_rep_wrap(~location_code, repeat.tick.labels = "y")
+# q <- q + csstyle::scale_fill_fhi("Location",palette="primary")
+# q <- q + scale_x_date("Date")
+# q <- q + scale_y_continuous("Number of reported cases",
+#   breaks = csstyle::pretty_breaks(5),
+#   expand = expansion(mult = c(0, 0.1))
+# )
+# q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
+# q <- q + labs(caption = fhi_caption())
+# q <- q + csstyle::theme_fhi_lines_horizontal()
+# q <- q + csstyle::set_x_axis_vertical()
+# q
 ```
 
 Weekly epicurve with vertical x-axis labels
 
 ```{r fig.height=10, fig.width=8}
-q <- ggplot(d, aes(x = isoyearweek, y = N))
-q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
-q <- q + lemon::facet_rep_wrap(~location_code, repeat.tick.labels = "y", ncol=4)
-q <- q + scale_fill_fhi("Location",palette="primary")
-q <- q + scale_x_discrete("Isoweek")
-q <- q + scale_y_continuous("Number of reported cases",
-  breaks = csstyle::pretty_breaks(5),
-  expand = expansion(mult = c(0, 0.1))
-)
-q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
-q <- q + labs(caption = fhi_caption())
-q <- q + theme_fhi_lines_horizontal()
-q <- q + csstyle::set_x_axis_vertical()
-q
+# q <- ggplot(d, aes(x = isoyearweek, y = N))
+# q <- q + geom_col(fill = csstyle::base_color, width = 0.8)
+# q <- q + lemon::facet_rep_wrap(~location_code, repeat.tick.labels = "y", ncol=4)
+# q <- q + scale_fill_fhi("Location",palette="primary")
+# q <- q + scale_x_discrete("Isoweek")
+# q <- q + scale_y_continuous("Number of reported cases",
+#   breaks = csstyle::pretty_breaks(5),
+#   expand = expansion(mult = c(0, 0.1))
+# )
+# q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
+# q <- q + labs(caption = fhi_caption())
+# q <- q + theme_fhi_lines_horizontal()
+# q <- q + csstyle::set_x_axis_vertical()
+# q
 ```
 
 ## Coloured epicurves

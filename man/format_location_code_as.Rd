@@ -7,16 +7,16 @@
 \usage{
 format_location_code_as_factor(
   x,
-  label = csstyle::global$location_code_to_factor_label,
-  label_if_not_unique = csstyle::global$location_code_to_factor_label_if_not_unique,
+  label = NULL,
+  label_if_not_unique = NULL,
   reference = csdata::nor_locations_names(),
   direction = 1
 )
 
 format_location_code_as_character(
   x,
-  label = csstyle::global$location_code_to_factor_label,
-  label_if_not_unique = csstyle::global$location_code_to_factor_label_if_not_unique,
+  label = NULL,
+  label_if_not_unique = NULL,
   reference = csdata::nor_locations_names(),
   direction = 1
 )

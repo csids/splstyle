@@ -1,6 +1,7 @@
 #' Epicurve
 #' @param x Dataset
 #' @param ... X
+#' @rdname plot_epicurve
 #' @export
 plot_epicurve <- function(x,
                           ...) {
@@ -29,30 +30,59 @@ plot_epicurve <- function(x,
 #' @param base_size size of plot
 #' @param ... Not currently used.
 #' @examples
-#' plot_epicurve(nor_covid19_cases_by_time_location[location_code == "county_nor03"], type = "single", var_y = "covid19_cases_testdate_n")
-#' plot_epicurve(nor_covid19_cases_by_time_location[granularity_geo == "county"], type = "stacked", fill_var = "location_code", var_y = "covid19_cases_testdate_n")
-#' plot_epicurve(nor_covid19_cases_by_time_location[granularity_geo == "county" & location_code %in% c("county_nor34", "county_nor38", "county_nor11")], type = "dodged", fill_var = "location_code", var_y = "covid19_cases_testdate_n")
+#' csstyle::plot_epicurve(
+#'   covidnor::total[
+#'     granularity_geo=="nation" &
+#'     granularity_time=="day" &
+#'     isoyear==2020
+#'   ],
+#'   type = "single",
+#'   var_y = "hospital_admissions_main_cause_n"
+#' )
+#' csstyle::plot_epicurve(
+#'   covidnor::total[
+#'     granularity_geo=="county" &
+#'     granularity_time=="day" &
+#'     isoyear==2020
+#'   ],
+#'   type = "stacked",
+#'   fill_var = "location_name",
+#'   var_y = "cases_by_testdate_n"
+#' )
+#' csstyle::plot_epicurve(
+#'   covidnor::total[
+#'     location_code %in% c("county_nor34", "county_nor38", "county_nor11") &
+#'     granularity_time=="day" &
+#'     isoyear==2020
+#'   ],
+#'   type = "dodged",
+#'   fill_var = "location_name",
+#'   var_y = "cases_by_testdate_n"
+#' )
+#' @rdname plot_epicurve
 #' @export
-plot_epicurve.default <- function(x,
-                                  type = "single",
-                                  fill_var = NULL,
-                                  fill_lab = NULL,
-                                  facet_wrap = NULL,
-                                  facet_ncol = NULL,
-                                  var_x = "isoyearweek",
-                                  var_y,
-                                  breaks_x = csstyle::every_nth(n = 2),
-                                  lab_x = NULL,
-                                  lab_y = NULL,
-                                  lab_main = NULL,
-                                  lab_sub = NULL,
-                                  lab_caption = fhi_caption(),
-                                  lab_date = "%Y-%m-%d",
-                                  format_y = format_nor_num_0,
-                                  scale_y = "free",
-                                  palette = "primary",
-                                  base_size = 12,
-                                  ...) {
+plot_epicurve.default <- function(
+  x,
+  type = "single",
+  fill_var = NULL,
+  fill_lab = NULL,
+  facet_wrap = NULL,
+  facet_ncol = NULL,
+  var_x = "isoyearweek",
+  var_y,
+  breaks_x = csstyle::every_nth(n = 2),
+  lab_x = NULL,
+  lab_y = NULL,
+  lab_main = NULL,
+  lab_sub = NULL,
+  lab_caption = "hi",#fhi_caption(),
+  lab_date = "%Y-%m-%d",
+  format_y = csstyle::format_num_as_nor_num_0,
+  scale_y = "free",
+  palette = "primary",
+  base_size = 12,
+  ...
+  ) {
 
   stopifnot(var_x %in% c("date", "isoyearweek"))
   stopifnot(type %in% c("single", "stacked", "dodged"))
@@ -62,14 +92,14 @@ plot_epicurve.default <- function(x,
   if(type == "stacked"){
     q <- ggplot(x, aes_string(x = var_x, y = var_y, fill = fill_var))
     q <- q + geom_col(width = 0.8)
-    q <- q + scale_fill_fhi(fill_lab, palette = palette)
+    q <- q + scale_fill_cs(fill_lab, palette = palette)
   } else if(type == "single"){
     q <- ggplot(x, aes_string(x = var_x, y = var_y))
-    q <- q + geom_col(fill = base_color, width = 0.8)
+    q <- q + geom_col(fill = colors$base, width = 0.8)
   } else if (type == "dodged") {
     q <- ggplot(x, aes_string(x = var_x, y = var_y, fill = fill_var))
     q <- q + geom_col(position = "dodge", width = 0.8)
-    q <- q + scale_fill_fhi(fill_lab, palette = palette)
+    q <- q + scale_fill_cs(fill_lab, palette = palette)
   }
 
   if(var_x == "date"){
@@ -92,7 +122,10 @@ plot_epicurve.default <- function(x,
                 subtitle = lab_sub,
                 caption = lab_caption,
   )
-  q <- q + theme_fhi_lines_horizontal(legend_position = "bottom", base_size = base_size)
-  q <- q + set_x_axis_vertical()
+  q <- q + theme_cs(
+    legend_position = "bottom",
+    base_size = base_size,
+    x_axis_vertical = TRUE
+    )
   q
 }

@@ -5,7 +5,7 @@
 \alias{colors}
 \title{Colors}
 \format{
-An object of class \code{environment} of length 2.
+An object of class \code{list} of length 4.
 }
 \usage{
 colors

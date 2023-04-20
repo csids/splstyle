@@ -1,17 +1,12 @@
-#' Main colour extractor
-#' https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2
-#' @param palette as
-#' @param direction as
-#' @export
-fhi_pal <- function(palette = "primary", direction = 1) {
-  if (!palette %in% vals$palettes) stop("Palette '{palette}' not in: ", paste0(vals$palettes, collapse = ", "))
+cs_pal <- function(palette = "primary", direction = 1) {
+  if (!palette %in% colors$palette_names) stop("Palette '{palette}' not in: ", paste0(colors$palette_names, collapse = ", "))
 
   function(n) {
-    pal_names <- stringr::str_subset(names(vals$pals), glue::glue("^{palette}_[0-9]+$"))
+    pal_names <- stringr::str_subset(names(colors$palettes), glue::glue("^{palette}_[0-9]+$"))
     nums_available <- stringr::str_remove(pal_names, paste0(palette, "_"))
     if (!n %in% nums_available) stop(glue::glue("Only {paste0(nums_available, collapse=', ')} levels allowed for {palette}"))
 
-    pal <- vals$pals[[glue::glue("{palette}_{n}")]]
+    pal <- colors$palettes[[glue::glue("{palette}_{n}")]]
     if (direction == -1) {
       pal <- rev(pal)
     }
@@ -29,8 +24,8 @@ fhi_pal <- function(palette = "primary", direction = 1) {
 #' @param direction as
 #' @param ... as
 #' @export
-scale_color_fhi <- scale_colour_fhi <- function(..., palette = "primary", direction = 1) {
-  pal <- fhi_pal(palette = palette, direction = direction)
+scale_color_cs <- scale_colour_fhi <- function(..., palette = "primary", direction = 1) {
+  pal <- cs_pal(palette = palette, direction = direction)
 
   ggplot2::discrete_scale("colour", paste0("fhi_", palette), palette = pal, ...)
 }
@@ -41,8 +36,8 @@ scale_color_fhi <- scale_colour_fhi <- function(..., palette = "primary", direct
 #' @param direction a
 #' @param ... a
 #' @export
-scale_fill_fhi <- function(..., palette = "primary", direction = 1) {
-  pal <- fhi_pal(palette = palette, direction = direction)
+scale_fill_cs <- function(..., palette = "primary", direction = 1) {
+  pal <- cs_pal(palette = palette, direction = direction)
 
   ggplot2::discrete_scale("fill", paste0("fhi_", palette), palette = pal, ...)
 }
@@ -57,12 +52,12 @@ display_all_palettes <- function() {
   pal <- NULL
   x <- NULL
 
-  tags <- vals$palettes
+  tags <- rev(colors$palette_names)
   to_plot <- vector("list", length = length(tags))
 
   for (i in seq_along(tags)) {
-    p <- stringr::str_subset(rev(names(vals$pals)), glue::glue("^{tags[i]}_[0-9]+$"))[1]
-    to_plot[[i]] <- data.table(pal = stringr::str_remove(p, "_[0-9]+$"), vals$pals[[p]], names(vals$pals[[p]]))
+    p <- stringr::str_subset(rev(names(colors$palettes)), glue::glue("^{tags[i]}_[0-9]+$"))[1]
+    to_plot[[i]] <- data.table(pal = stringr::str_remove(p, "_[0-9]+$"), colors$palettes[[p]], names(colors$palettes[[p]]))
     to_plot[[i]][, x := 1:.N]
   }
   to_plot <- rbindlist(to_plot)
@@ -79,12 +74,6 @@ display_all_palettes <- function() {
   q <- q + scale_fill_manual(values = cols)
   q <- q + scale_x_continuous("Level")
   q <- q + scale_y_discrete("Palette")
-  q <- q + theme_fhi_basic()
-  q <- q + theme(legend.position = "none")
+  q <- q + theme_cs(panel_on_top = FALSE, legend_position = "none")
   q
-}
-
-Display_All_Palettes <- function() {
-  .Deprecated("display_all_palettes")
-  display_all_palettes()
 }
