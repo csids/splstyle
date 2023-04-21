@@ -17,6 +17,7 @@ plot_epicurve(x, ...)
   var_x,
   var_y,
   breaks_x = ggplot2::waiver(),
+  breaks_y = csstyle::pretty_breaks(6),
   lab_x = NULL,
   lab_y = NULL,
   lab_main = NULL,

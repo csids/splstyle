@@ -1,7 +1,5 @@
 ---
 title: "Introduction to csstyle"
-author: "Richard Aubrey White, Chi Zhang"
-date: "2021-02-10"
 output:
   rmarkdown::html_vignette:
     fig_width: 6
