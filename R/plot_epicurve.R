@@ -106,6 +106,7 @@ plot_epicurve.default <- function(
   var_x,
   var_y,
   breaks_x = ggplot2::waiver(),
+  breaks_y = csstyle::pretty_breaks(6),
   lab_x = NULL,
   lab_y = NULL,
   lab_main = NULL,
@@ -145,14 +146,17 @@ plot_epicurve.default <- function(
   }
 
   if(!is.null(facet_wrap)){
-    q <- q + lemon::facet_rep_wrap(~get(facet_wrap), repeat.tick.labels = "y", ncol = facet_ncol)
+    q <- q + facet_wrap(~get(facet_wrap), ncol = facet_ncol)
+    q <- q + annotate("segment", x=-Inf, xend=Inf, y=-Inf, yend=-Inf)
+    q <- q + annotate("segment", x=-Inf, xend=-Inf, y=-Inf, yend=Inf)
+    #q <- q + lemon::facet_rep_wrap(~get(facet_wrap), repeat.tick.labels = "y", ncol = facet_ncol)
 
   }
 
   q <- q + scale_y_continuous(
     name = lab_y,
     expand = expansion(mult = c(0, 0.05)),
-    breaks = pretty_breaks(5),
+    breaks = breaks_y,
     labels = format_y
   )
   q <- q + labs(
