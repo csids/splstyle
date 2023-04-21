@@ -2,6 +2,7 @@
 
 - Reintroduction of `plot_epicurve`
 - Vignette for epicurves
+- Vignette for cstyle
 
 # Version 2023.4.18
 
