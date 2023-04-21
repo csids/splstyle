@@ -1,6 +1,7 @@
 #' plot_timeseries
 #' @param x Dataset
 #' @param ... X
+#' @rdname plot_timeseries
 #' @export
 plot_timeseries <- function(x,
                           ...) {
@@ -35,6 +36,7 @@ plot_timeseries <- function(x,
 #' @param var_group variable to group by
 #' @param geom_point TRUE if points should be included in the graph.
 #' @param ... Not currently used.
+#' @rdname plot_timeseries
 #' @examples
 #' plot_timeseries(nor_covid19_cases_by_time_location[granularity_geo == "nation" & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = csstyle::pretty_breaks(5))
 #' plot_timeseries(nor_covid19_cases_by_time_location[location_code %in% c("county_nor03", "county_nor18", "county_nor30", "county_nor54") & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = csstyle::pretty_breaks(5), facet_wrap = "location_code")

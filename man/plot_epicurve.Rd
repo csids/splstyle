@@ -52,6 +52,8 @@ plot_epicurve(x, ...)
 
 \item{breaks_x}{Use csstyle::every_nth() to choose how many ticks to show on the x-axis}
 
+\item{breaks_y}{Use csstyle::pretty_breaks(6) to choose how many ticks to show on the y-axis}
+
 \item{lab_x}{The label of the x-axis}
 
 \item{lab_y}{The label of the y-axis}

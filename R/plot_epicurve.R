@@ -18,6 +18,7 @@ plot_epicurve <- function(x,
 #' @param var_x "date" or "isoyearweek"
 #' @param var_y The name of the variable to use on the y-axis of the graph
 #' @param breaks_x Use csstyle::every_nth() to choose how many ticks to show on the x-axis
+#' @param breaks_y Use csstyle::pretty_breaks(6) to choose how many ticks to show on the y-axis
 #' @param lab_x The label of the x-axis
 #' @param lab_y The label of the y-axis
 #' @param lab_main The main title of the graph

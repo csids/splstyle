@@ -77,7 +77,7 @@ csstyle::plot_epicurve(
   type = "single",
   var_x = "isoyearweek",
   var_y = "cases_by_testdate_n",
-  breaks = csstyle::every_nth(8)
+  breaks_x = csstyle::every_nth(8)
 )
 ```
 
