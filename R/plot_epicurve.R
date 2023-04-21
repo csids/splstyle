@@ -37,6 +37,17 @@ plot_epicurve <- function(x,
 #'     isoyear==2020
 #'   ],
 #'   type = "single",
+#'   var_x = "date",
+#'   var_y = "hospital_admissions_main_cause_n"
+#' )
+#' csstyle::plot_epicurve(
+#'   covidnor::total[
+#'     granularity_geo=="nation" &
+#'     granularity_time=="isoweek" &
+#'     isoyear==2020
+#'   ],
+#'   type = "single",
+#'   var_x = "isoyearweek",
 #'   var_y = "hospital_admissions_main_cause_n"
 #' )
 #' csstyle::plot_epicurve(
@@ -46,6 +57,18 @@ plot_epicurve <- function(x,
 #'     isoyear==2020
 #'   ],
 #'   type = "stacked",
+#'   var_x = "date",
+#'   fill_var = "location_name",
+#'   var_y = "cases_by_testdate_n"
+#' )
+#' csstyle::plot_epicurve(
+#'   covidnor::total[
+#'     granularity_geo=="county" &
+#'     granularity_time=="isoweek" &
+#'     isoyear==2020
+#'   ],
+#'   type = "stacked",
+#'   var_x = "isoyearweek",
 #'   fill_var = "location_name",
 #'   var_y = "cases_by_testdate_n"
 #' )
@@ -57,6 +80,18 @@ plot_epicurve <- function(x,
 #'   ],
 #'   type = "dodged",
 #'   fill_var = "location_name",
+#'   var_x = "date",
+#'   var_y = "cases_by_testdate_n"
+#' )
+#' csstyle::plot_epicurve(
+#'   covidnor::total[
+#'     location_code %in% c("county_nor34", "county_nor38", "county_nor11") &
+#'     granularity_time=="isoweek" &
+#'     isoyear==2020
+#'   ],
+#'   type = "dodged",
+#'   fill_var = "location_name",
+#'   var_x = "isoyearweek",
 #'   var_y = "cases_by_testdate_n"
 #' )
 #' @rdname plot_epicurve
@@ -68,9 +103,9 @@ plot_epicurve.default <- function(
   fill_lab = NULL,
   facet_wrap = NULL,
   facet_ncol = NULL,
-  var_x = "isoyearweek",
+  var_x,
   var_y,
-  breaks_x = csstyle::every_nth(n = 2),
+  breaks_x = ggplot2::waiver(),
   lab_x = NULL,
   lab_y = NULL,
   lab_main = NULL,
@@ -104,7 +139,8 @@ plot_epicurve.default <- function(
 
   if(var_x == "date"){
     q <- q + scale_x_date(name = lab_x, date_labels = lab_date, breaks = breaks_x)
-  } else{
+  } else {
+    if(identical(breaks_x, ggplot2::waiver())) breaks_x <- csstyle::every_nth(n = 4)
     q <- q + scale_x_discrete(name = lab_x, breaks = breaks_x)
   }
 
@@ -113,14 +149,16 @@ plot_epicurve.default <- function(
 
   }
 
-  q <- q + scale_y_continuous(name = lab_y,
-                              expand = expansion(mult = c(0, 0.1)),
-                              breaks = pretty_breaks(5),
-                              labels = format_y
+  q <- q + scale_y_continuous(
+    name = lab_y,
+    expand = expansion(mult = c(0, 0.05)),
+    breaks = pretty_breaks(5),
+    labels = format_y
   )
-  q <- q + labs(title = lab_main,
-                subtitle = lab_sub,
-                caption = lab_caption,
+  q <- q + labs(
+    title = lab_main,
+    subtitle = lab_sub,
+    caption = lab_caption,
   )
   q <- q + theme_cs(
     legend_position = "bottom",

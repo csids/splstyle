@@ -14,9 +14,9 @@ plot_epicurve(x, ...)
   fill_lab = NULL,
   facet_wrap = NULL,
   facet_ncol = NULL,
-  var_x = "isoyearweek",
+  var_x,
   var_y,
-  breaks_x = csstyle::every_nth(n = 2),
+  breaks_x = ggplot2::waiver(),
   lab_x = NULL,
   lab_y = NULL,
   lab_main = NULL,
@@ -84,6 +84,17 @@ csstyle::plot_epicurve(
     isoyear==2020
   ],
   type = "single",
+  var_x = "date",
+  var_y = "hospital_admissions_main_cause_n"
+)
+csstyle::plot_epicurve(
+  covidnor::total[
+    granularity_geo=="nation" &
+    granularity_time=="isoweek" &
+    isoyear==2020
+  ],
+  type = "single",
+  var_x = "isoyearweek",
   var_y = "hospital_admissions_main_cause_n"
 )
 csstyle::plot_epicurve(
@@ -93,6 +104,18 @@ csstyle::plot_epicurve(
     isoyear==2020
   ],
   type = "stacked",
+  var_x = "date",
+  fill_var = "location_name",
+  var_y = "cases_by_testdate_n"
+)
+csstyle::plot_epicurve(
+  covidnor::total[
+    granularity_geo=="county" &
+    granularity_time=="isoweek" &
+    isoyear==2020
+  ],
+  type = "stacked",
+  var_x = "isoyearweek",
   fill_var = "location_name",
   var_y = "cases_by_testdate_n"
 )
@@ -104,6 +127,18 @@ csstyle::plot_epicurve(
   ],
   type = "dodged",
   fill_var = "location_name",
+  var_x = "date",
+  var_y = "cases_by_testdate_n"
+)
+csstyle::plot_epicurve(
+  covidnor::total[
+    location_code \%in\% c("county_nor34", "county_nor38", "county_nor11") &
+    granularity_time=="isoweek" &
+    isoyear==2020
+  ],
+  type = "dodged",
+  fill_var = "location_name",
+  var_x = "isoyearweek",
   var_y = "cases_by_testdate_n"
 )
 }

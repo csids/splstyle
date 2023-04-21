@@ -44,23 +44,16 @@ library(data.table)
 Daily epicurve for `county_nor03`
 
 ```{r warning=FALSE}
-# q <- ggplot(
-#   covidnor::total[location_code=="nation_nor" & granularity_time=="day" & isoyear==2020], 
-#   aes(
-#     x = date, 
-#     y = hospital_admissions_main_cause_n
-#   )
-# )
-# q <- q + geom_col(width = 0.8, fill = csstyle::colors$base)
-# q <- q + scale_x_date("Testing date")
-# q <- q + scale_y_continuous("Number of reported cases",
-#   breaks = csstyle::pretty_breaks(5),
-#   expand = expansion(mult = c(0, 0.1))
-# )
-# q <- q + labs(title = "Epicurve from 2018-01-01 to 2018-02-20")
-# #q <- q + labs(caption = fhi_caption())
-# q <- q + csstyle::theme_cs()
-# q
+csstyle::plot_epicurve(
+  covidnor::total[
+    granularity_geo=="nation" &
+    granularity_time=="day" &
+    isoyear==2020
+  ],
+  type = "single",
+  var_x = "date",
+  var_y = "hospital_admissions_main_cause_n"
+)
 ```
 
 Weekly epicurve for `county_nor03`
