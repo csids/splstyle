@@ -1,14 +1,14 @@
-#' plot_timeseries
+#' plot_seasonal_timeseries
 #' @param x Dataset
 #' @param ... X
-#' @rdname plot_timeseries
+#' @rdname plot_seasonal_timeseries
 #' @export
-plot_timeseries <- function(x,
+plot_seasonal_timeseries <- function(x,
                           ...) {
-  UseMethod("plot_timeseries", x)
+  UseMethod("plot_seasonal_timeseries", x)
 }
 
-#' plot_timeseries
+#' plot_seasonal_timeseries
 #'
 #' If the dataset is already long it needs to include the following columns: variable, name_outcome and n.
 #' @param x Dataset
@@ -32,22 +32,19 @@ plot_timeseries <- function(x,
 #' @param palette_dir 1 or -1.
 #' @param scale_y How to scale the y-axis if the graph is split with facet_wrap. Free or fixed.
 #' @param base_size The base size of the plot.
-#' @param wide_table TRUE if the data.table is wide and FALSE if the data.table is long.
-#' @param var_group variable to group by
 #' @param geom_point TRUE if points should be included in the graph.
+#' @param fn_convert_isoyearweek_to_season A function that converts from isoyearweek to season
+#' @param fn_convert_isoyearweek_to_seasonweek A function that converts from isoyearweek to seasonweek
+#' @param fn_convert_seasonweek_to_isoweek A function that converts from seasonweek to isoweek
+#' @param fn_convert_isoweek_to_seasonweek A function that convets from isoweek to seasonweek
 #' @param ... Not currently used.
-#' @rdname plot_timeseries
-#' @examples
-#' # csstyle::plot_timeseries(
-#' # nor_covid19_cases_by_time_location[granularity_geo == "nation" & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = csstyle::pretty_breaks(5))
-#' # plot_timeseries(nor_covid19_cases_by_time_location[location_code %in% c("county_nor03", "county_nor18", "county_nor30", "county_nor54") & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = csstyle::pretty_breaks(5), facet_wrap = "location_code")
-#' # plot_timeseries(nor_covid19_cases_by_time_location[granularity_geo == "county" & granularity_time == "isoweek"], var_y = c("Covid cases" = "covid19_cases_testdate_n"), breaks_x = every_nth(8), breaks_y = csstyle::pretty_breaks(5), var_group = "location_code")
+#' @rdname plot_seasonal_timeseries
 #' @export
-plot_timeseries.default <- function(
+plot_seasonal_timeseries.default <- function(
   x,
-  var_x,
+  var_x = "isoyearweek",
   var_y,
-  breaks_x = ggplot2::waiver(),
+  breaks_x = seq(1,52, 4),
   breaks_y = csstyle::pretty_breaks(6),
   lab_main = NULL,
   lab_sub = NULL,
@@ -65,63 +62,32 @@ plot_timeseries.default <- function(
   palette_dir = 1,
   scale_y = "free",
   base_size = 12,
-  wide_table = TRUE,
-  var_group = NULL,
   geom_point = FALSE,
+  fn_convert_isoyearweek_to_season = cstime::isoyearweek_to_season_c,
+  fn_convert_isoyearweek_to_seasonweek = cstime::isoyearweek_to_seasonweek_n,
+  fn_convert_seasonweek_to_isoweek = cstime::seasonweek_to_isoweek_c,
+  fn_convert_isoweek_to_seasonweek = cstime::isoweek_to_seasonweek_n,
   ...
   ) {
 
-  n <- NULL
-  name_outcome <- NULL
+  pd <- copy(x)
+  pd[, plot_season := fn_convert_isoyearweek_to_season(get(var_x))]
+  pd[, plot_seasonweek := fn_convert_isoyearweek_to_seasonweek(get(var_x))]
 
-  if(wide_table){
-    d <- melt(x,
-              id.vars = c(facet_wrap, var_x, var_group),
-              measure.vars = list(n = var_y),
-              value.name = "n"
-    )
-
-    d_name <- data.table(name_outcome= names(var_y), variable = var_y)
-
-    d <- d_name[d, on = 'variable']
-  } else {
-    d <- copy(x)
-    d[, n := get(var_y)]
-  }
-
-  # if(!"name_outcome" %in% names(d)){
-  #   stop("name_outcome is not a column in x")
-  # }
-
-  # if(!"variable" %in% names(d)){
-  #   stop("variable is not a column in x")
-  # }
-
-  if(!"n" %in% names(d)){
-    stop("n is not a column in x")
-  }
-
-  if(is.null(var_group)){
-    q <- ggplot(d, aes_string(x = var_x))
-    q <- q + geom_path(aes(y = n, color = name_outcome, group = name_outcome), lwd = 1)
-  } else {
-    q <- ggplot(d, aes_string(x = var_x, color = var_group, group = var_group))
-    q <- q + geom_path(aes(y = n), lwd = 1)
-  }
+  q <- ggplot(pd, aes_string(y = var_y, x = "plot_seasonweek", color = "plot_season"))
+  q <- q + geom_line()
 
   if(geom_point) {
     q <- q + geom_point(aes(y = n))
   }
 
-  if(var_x == "date"){
-    q <- q + scale_x_date(name = lab_x, date_labels = lab_date, breaks = breaks_x)
-  } else if(var_x == "isoyearweek") {
-    if(identical(breaks_x, ggplot2::waiver())) breaks_x <- csstyle::every_nth(n = 4)
-    q <- q + scale_x_discrete(name = lab_x, breaks = breaks_x)
-  } else if(var_x == "seasonweek") {
-    if(identical(breaks_x, ggplot2::waiver())) breaks_x <- csstyle::every_nth(n = 4)
-    q <- q + scale_x_continuous(name = lab_x, breaks = breaks_x, labels = cstime::seasonweek_to_isoweek_c)
-  }
+  if(identical(breaks_x, ggplot2::waiver())) breaks_x <- csstyle::every_nth(n = 4)
+  breaks_x <- fn_convert_isoweek_to_seasonweek(breaks_x)
+  q <- q + scale_x_continuous(
+    name = lab_x,
+    breaks = breaks_x,
+    labels = fn_convert_seasonweek_to_isoweek
+  )
 
   q <- q + scale_y_continuous(
     name = lab_y,

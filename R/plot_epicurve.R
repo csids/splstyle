@@ -21,6 +21,7 @@ plot_epicurve <- function(x,
 #' @param breaks_y Use csstyle::pretty_breaks(6) to choose how many ticks to show on the y-axis
 #' @param lab_x The label of the x-axis
 #' @param lab_y The label of the y-axis
+#' @param lab_legend The label of the legend
 #' @param lab_main The main title of the graph
 #' @param lab_sub The subtitle of the graph
 #' @param lab_caption If not specified, csstyle::fhi_caption() is used as the lab_caption.
@@ -29,6 +30,8 @@ plot_epicurve <- function(x,
 #' @param scale_y How to scale the y-axis if the graph is split with facet_wrap. Free or fixed.
 #' @param palette what palette to use
 #' @param base_size size of plot
+#' @param legend_position Position of the legend
+#' @param legend_direction Direction of the legend
 #' @param ... Not currently used.
 #' @examples
 #' csstyle::plot_epicurve(
@@ -110,6 +113,7 @@ plot_epicurve.default <- function(
   breaks_y = csstyle::pretty_breaks(6),
   lab_x = NULL,
   lab_y = NULL,
+  lab_legend = NULL,
   lab_main = NULL,
   lab_sub = NULL,
   lab_caption = "hi",#fhi_caption(),
@@ -118,6 +122,8 @@ plot_epicurve.default <- function(
   scale_y = "free",
   palette = "primary",
   base_size = 12,
+  legend_position = "bottom",
+  legend_direction = "horizontal",
   ...
   ) {
 
@@ -166,7 +172,7 @@ plot_epicurve.default <- function(
     caption = lab_caption,
   )
   q <- q + theme_cs(
-    legend_position = "bottom",
+    legend_position = legend_position,
     base_size = base_size,
     x_axis_vertical = TRUE
     )

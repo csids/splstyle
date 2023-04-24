@@ -6,3 +6,5 @@ vignettes2
 ^doc$
 ^Meta$
 dev
+@eaDir
+_pkgdown.yml

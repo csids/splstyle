@@ -1,0 +1,75 @@
+---
+title: "Seasonal timeseries"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig_height: 6
+vignette: >
+  %\VignetteIndexEntry{Seasonal timeseries}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+```{r}
+library(magrittr)
+```
+
+## Data
+
+```{r}
+d_day <- covidnor::total[
+  granularity_geo=="county" & 
+  granularity_time=="day",
+  .(
+    isoyear,
+    date,
+    location_code,
+    location_name,
+    cases_by_testdate_n,
+    cases_by_testdate_vs_pop_pr100000
+  )
+] %>% 
+  print()
+d_isoweek <- covidnor::total[
+  granularity_geo=="county" & 
+  granularity_time=="isoweek",
+  .(
+    isoyear,
+    isoyearweek,
+    season,
+    seasonweek,
+    location_code,
+    location_name,
+    cases_by_testdate_n,
+    cases_by_testdate_vs_pop_pr100000
+  )
+] %>% 
+  print()
+```
+
+## Graphs for one geographical area
+
+```{r}
+csstyle::plot_seasonal_timeseries(
+  d_isoweek[location_code %in% c("county_nor03")],
+  var_x = "isoyearweek",
+  var_y = "cases_by_testdate_vs_pop_pr100000",
+  breaks_x = seq(1,52, 4),
+  # breaks_x = csstyle::every_nth(8),
+  #breaks_x = c(3, 6),
+  wide_table = FALSE,
+  var_group = "season"
+)
+```
+
+

@@ -20,6 +20,7 @@ plot_epicurve(x, ...)
   breaks_y = csstyle::pretty_breaks(6),
   lab_x = NULL,
   lab_y = NULL,
+  lab_legend = NULL,
   lab_main = NULL,
   lab_sub = NULL,
   lab_caption = "hi",
@@ -28,6 +29,8 @@ plot_epicurve(x, ...)
   scale_y = "free",
   palette = "primary",
   base_size = 12,
+  legend_position = "bottom",
+  legend_direction = "horizontal",
   ...
 )
 }
@@ -58,6 +61,8 @@ plot_epicurve(x, ...)
 
 \item{lab_y}{The label of the y-axis}
 
+\item{lab_legend}{The label of the legend}
+
 \item{lab_main}{The main title of the graph}
 
 \item{lab_sub}{The subtitle of the graph}
@@ -73,6 +78,10 @@ plot_epicurve(x, ...)
 \item{palette}{what palette to use}
 
 \item{base_size}{size of plot}
+
+\item{legend_position}{Position of the legend}
+
+\item{legend_direction}{Direction of the legend}
 }
 \description{
 Epicurve
