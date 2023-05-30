@@ -4,7 +4,8 @@ Version: 2022.11.24
 Authors@R: c(
   person(c("Richard","Aubrey"), "White", email = "hello@rwhite.no", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-6747-1726")), 
   person(c("Celine","Victoria"), "Berg-Hansen", email = "celinevictoria.berg-hansen@fhi.no", role = c("aut"), comment = c(ORCID = "0000-0002-0033-2019")),
-  person(c("Chi"), "Zhang", email = "andreachizhang@yahoo.com", role = c("aut"))
+  person(c("Chi"), "Zhang", email = "andreachizhang@yahoo.com", role = c("aut")),
+  person("CSIDS", email = "hello@csids.no", role = c("cph"))
   )
 Description: A system for standardizing outputs (e.g. graphs, tables, reports). 
     The standard tools for producing output are too flexible, allowing for too much variation 
