@@ -3,6 +3,7 @@
 #' @examples
 #' csstyle::format_cstidy_age_as_factor("009")
 #' csstyle::format_cstidy_age_as_factor("005-014")
+#' @returns A vector of factors
 #' @rdname format_cstidy_age_as
 #' @export
 format_cstidy_age_as_factor <- function(x){
@@ -30,6 +31,7 @@ format_cstidy_age_as_factor <- function(x){
 #' @examples
 #' csstyle::format_cstidy_age_as_character("009")
 #' csstyle::format_cstidy_age_as_character("005-014")
+#' @returns A vector of characters
 #' @rdname format_cstidy_age_as
 #' @export
 format_cstidy_age_as_character <- function(x){

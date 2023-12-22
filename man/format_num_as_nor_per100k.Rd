@@ -4,8 +4,7 @@
 \alias{format_num_as_nor_per100k_0}
 \alias{format_num_as_nor_per100k_1}
 \alias{format_num_as_nor_per100k_2}
-\title{format_nor_num_0
-Formats as a norwegian number with 0 digits and the suffix " /100k".
+\title{Formats as a norwegian number with 0 digits and the suffix " /100k".
 Useful for scale labels}
 \usage{
 format_num_as_nor_per100k_0(x)
@@ -17,16 +16,20 @@ format_num_as_nor_per100k_2(x)
 \arguments{
 \item{x}{value}
 }
+\value{
+Character vector
+
+Character vector
+
+Character vector
+}
 \description{
-format_nor_num_0
 Formats as a norwegian number with 0 digits and the suffix " /100k".
 Useful for scale labels
 
-format_nor_num_1
 Formats as a norwegian number with 1 digits and the suffix " /100k"
 Useful for scale labels
 
-format_nor_num_2
 Formats as a norwegian number with 2 digits and the suffix " /100k"
 Useful for scale labels
 }

@@ -44,8 +44,13 @@ set_x_axis_vertical()
 
 \item{panel.grid.minor.y}{Set to FALSE}
 }
+\value{
+ggplot2 theme
+
+ggplot2 theme component
+}
 \description{
 ggplot2 theme
 
-set_x_axis_vertical
+Sets the x axis to be vertical
 }

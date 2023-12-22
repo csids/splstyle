@@ -11,6 +11,9 @@
 
 \item{...}{Further arguments}
 }
+\value{
+x as invisible.
+}
 \description{
 Print github_code
 }

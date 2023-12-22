@@ -9,6 +9,9 @@ view_html(x)
 \arguments{
 \item{x}{html}
 }
+\value{
+Nothing
+}
 \description{
 View HTML in the rstudio view
 }

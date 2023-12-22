@@ -9,11 +9,15 @@ as_github_code(url)
 \arguments{
 \item{url}{URL from github}
 }
+\value{
+Class github_code
+}
 \description{
 An easy way to print github code
 }
 \examples{
-x <- as_github_code("https://raw.githubusercontent.com/folkehelseinstituttet/scskeleton/main/R/00_env_and_namespace.r")
-x <- as_github_code("https://github.com/folkehelseinstituttet/scskeleton/blob/main/R/00_env_and_namespace.r")
+\dontrun{
+x <- as_github_code("https://github.com/x/y/blob/main/file.txt")
 print(x, lines = 3:5)
+}
 }

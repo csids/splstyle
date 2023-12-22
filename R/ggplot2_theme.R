@@ -10,6 +10,7 @@
 #' @param panel.grid.minor.x Set to FALSE
 #' @param panel.grid.major.y Set to FALSE
 #' @param panel.grid.minor.y Set to FALSE
+#' @returns ggplot2 theme
 #' @rdname theme
 #' @export
 theme_cs <- function(
@@ -77,6 +78,8 @@ theme_cs <- function(
       panel.grid.minor.y = panel.grid.minor.y,
       panel.grid = element_line(),
       legend.position = legend_position,
+      plot.title.position = "plot",
+      plot.caption.position = "plot",
       complete = TRUE
     )
 
@@ -104,8 +107,9 @@ theme_cs <- function(
   return(retval)
 }
 
-#' set_x_axis_vertical
+#' Sets the x axis to be vertical
 #' @import ggplot2
+#' @returns ggplot2 theme component
 #' @rdname theme
 #' @export
 set_x_axis_vertical <- function() {

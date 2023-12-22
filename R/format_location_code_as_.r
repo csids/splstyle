@@ -4,6 +4,7 @@
 #' @param label_if_not_unique The label of elements that are not unique
 #' @param reference Where you get your data
 #' @param direction -1 is reverse
+#' @returns Factor vector
 #' @rdname format_location_code_as
 #' @export
 format_location_code_as_factor <- function(
@@ -53,6 +54,7 @@ format_location_code_as_factor <- function(
 #' @param label_if_not_unique The label of elements that are not unique
 #' @param reference Where you get your data
 #' @param direction -1 is reverse
+#' @returns Character vector
 #' @rdname format_location_code_as
 #' @export
 format_location_code_as_character <- function(

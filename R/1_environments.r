@@ -102,9 +102,6 @@ colors$palettes$posneg_2 <- c(
   colors$named_colors["H6"]
 )
 
-
-
-
 colors$palette_names <- c(
   "primary",
   "posneg",

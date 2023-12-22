@@ -2,19 +2,21 @@
 % Please edit documentation in R/every_nth.R
 \name{every_nth}
 \alias{every_nth}
-\title{every_nth
-Useful for plotting every nth discrete value in ggplot2}
+\title{Returns every nth discrete value}
 \usage{
 every_nth(n)
 }
 \arguments{
 \item{n}{nth discrete value}
 }
+\value{
+A function that returns every nth discrete value.
+}
 \description{
-every_nth
-Useful for plotting every nth discrete value in ggplot2
+Returns every nth discrete value
 }
 \examples{
+every_nth(4)(c(1:10))
 \dontrun{
 scale_x_discrete(NULL, breaks = every_nth(n = 2))
 }

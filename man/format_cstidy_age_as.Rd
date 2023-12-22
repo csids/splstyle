@@ -12,6 +12,11 @@ format_cstidy_age_as_character(x)
 \arguments{
 \item{x}{a string (or multiple strings) with an age or an age group}
 }
+\value{
+A vector of factors
+
+A vector of characters
+}
 \description{
 Formats a cstidy age as a factor
 

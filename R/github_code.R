@@ -1,9 +1,11 @@
 #' An easy way to print github code
 #' @param url URL from github
 #' @examples
-#' x <- as_github_code("https://raw.githubusercontent.com/folkehelseinstituttet/scskeleton/main/R/00_env_and_namespace.r")
-#' x <- as_github_code("https://github.com/folkehelseinstituttet/scskeleton/blob/main/R/00_env_and_namespace.r")
+#' \dontrun{
+#' x <- as_github_code("https://github.com/x/y/blob/main/file.txt")
 #' print(x, lines = 3:5)
+#' }
+#' @returns Class github_code
 #' @export
 as_github_code <- function(url){
   if(stringr::str_detect(url, "^https://github.com/") | stringr::str_detect(url, "^https://www.github.com/")){
@@ -25,6 +27,7 @@ as_github_code <- function(url){
 #' Print github_code
 #' @param x an object
 #' @param ... Further arguments
+#' @returns x as invisible.
 #' @export
 print.github_code <- function(x, ...){
   dots <- list(...)

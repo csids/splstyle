@@ -4,8 +4,7 @@
 \alias{format_num_as_nor_num_0}
 \alias{format_num_as_nor_num_1}
 \alias{format_num_as_nor_num_2}
-\title{format_nor_num_0
-Formats as a norwegian number with 0 digits.
+\title{Formats as a norwegian number with 0 digits.
 Useful for scale labels}
 \usage{
 format_num_as_nor_num_0(x)
@@ -17,16 +16,20 @@ format_num_as_nor_num_2(x)
 \arguments{
 \item{x}{value}
 }
+\value{
+Character vector
+
+Character vector
+
+Character vector
+}
 \description{
-format_nor_num_0
 Formats as a norwegian number with 0 digits.
 Useful for scale labels
 
-format_nor_num_1
 Formats as a norwegian number with 1 digits.
 Useful for scale labels
 
-format_nor_num_2
 Formats as a norwegian number with 2 digits.
 Useful for scale labels
 }

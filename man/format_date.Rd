@@ -4,7 +4,7 @@
 \alias{format_date_as_nor}
 \alias{format_datetime_as_nor}
 \alias{format_datetime_as_file}
-\title{format_date_nor}
+\title{Format date in the Norwegian format}
 \usage{
 format_date_as_nor(x = lubridate::today(), format = "\%d.\%m.\%Y")
 
@@ -16,14 +16,21 @@ format_datetime_as_nor(
 format_datetime_as_file(x = lubridate::now(), format = "\%Y_\%m_\%d_\%H\%M\%S")
 }
 \arguments{
-\item{x}{value}
+\item{x}{Datetime}
 
-\item{format}{the desired format}
+\item{format}{The desired format}
+}
+\value{
+A character vector
+
+A character vector
+
+A character vector
 }
 \description{
-format_date_nor
+Format date in the Norwegian format
 
-format_datetime_nor
+Format datetime in the Norwegian format
 
-format_date_nor
+Format datetime in a file format
 }

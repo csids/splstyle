@@ -3,6 +3,7 @@
 Makefile
 data-raw
 vignettes2
+vignettes3
 ^doc$
 ^Meta$
 dev

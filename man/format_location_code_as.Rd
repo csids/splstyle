@@ -32,6 +32,11 @@ format_location_code_as_character(
 
 \item{direction}{-1 is reverse}
 }
+\value{
+Factor vector
+
+Character vector
+}
 \description{
 Makes a factor with a label from a vector of location codes
 

@@ -1,6 +1,7 @@
-#' format_date_nor
-#' @param x value
-#' @param format the desired format
+#' Format date in the Norwegian format
+#' @param x Date
+#' @param format The desired format
+#' @returns A character vector
 #' @rdname format_date
 #' @export
 format_date_as_nor <- function(x = lubridate::today(), format = "%d.%m.%Y") {
@@ -8,9 +9,10 @@ format_date_as_nor <- function(x = lubridate::today(), format = "%d.%m.%Y") {
   return(retval)
 }
 
-#' format_datetime_nor
-#' @param x value
-#' @param format the desired format
+#' Format datetime in the Norwegian format
+#' @param x Datetime
+#' @param format The desired format
+#' @returns A character vector
 #' @rdname format_date
 #' @export
 format_datetime_as_nor <- function(x = lubridate::now(), format = "%d.%m.%Y kl. %H:%S") {
@@ -18,9 +20,10 @@ format_datetime_as_nor <- function(x = lubridate::now(), format = "%d.%m.%Y kl. 
   return(retval)
 }
 
-#' format_date_nor
-#' @param x value
-#' @param format the desired format
+#' Format datetime in a file format
+#' @param x Datetime
+#' @param format The desired format
+#' @returns A character vector
 #' @rdname format_date
 #' @export
 format_datetime_as_file <- function(x = lubridate::now(), format = "%Y_%m_%d_%H%M%S") {

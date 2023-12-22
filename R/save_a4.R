@@ -1,14 +1,15 @@
-#' save_a4
-#' @param p plot
+#' Save ggplot in A4 scale
+#' @param q Plot
 #' @param filename filename
 #' @param landscape landscape dimensions?
 #' @param scaling_factor How much larger/smaller than A4?
+#' @returns Nothing.
 #' @export
-save_a4 <- function(p, filename, landscape = T, scaling_factor = 1) {
+save_a4 <- function(q, filename, landscape = T, scaling_factor = 1) {
   if (landscape) {
     ggsave(
       filename,
-      plot = p,
+      plot = q,
       width = 297 * scaling_factor,
       height = 210 * scaling_factor,
       units = "mm"
@@ -16,7 +17,7 @@ save_a4 <- function(p, filename, landscape = T, scaling_factor = 1) {
   } else {
     ggsave(
       filename,
-      plot = p,
+      plot = q,
       width = 210 * scaling_factor,
       height = 297 * scaling_factor,
       units = "mm"

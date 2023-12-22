@@ -3,8 +3,7 @@
 \name{format_num_as_nor_invlog2_1}
 \alias{format_num_as_nor_invlog2_1}
 \alias{format_num_as_nor_invlog2_2}
-\title{format_nor_invlog2_1
-Formats as a norwegian number with 1 digit on log-2 scale.
+\title{Formats as a norwegian number with 1 digit on log-2 scale.
 Useful for scale labels}
 \usage{
 format_num_as_nor_invlog2_1(x)
@@ -14,12 +13,15 @@ format_num_as_nor_invlog2_2(x)
 \arguments{
 \item{x}{value}
 }
+\value{
+Character vector
+
+Character vector
+}
 \description{
-format_nor_invlog2_1
 Formats as a norwegian number with 1 digit on log-2 scale.
 Useful for scale labels
 
-format_nor_invlog2_2
 Formats as a norwegian number with 2 digits on log-2 scale.
 Useful for scale labels
 }

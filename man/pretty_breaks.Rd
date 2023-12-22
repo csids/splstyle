@@ -2,19 +2,20 @@
 % Please edit documentation in R/pretty_breaks.R
 \name{pretty_breaks}
 \alias{pretty_breaks}
-\title{pretty_breaks}
+\title{Pretty breaks}
 \usage{
-pretty_breaks(n = 5, digits = 0, break_with_four_digits = T, ...)
+pretty_breaks(n = 5, formatting_fn = csstyle::format_num_as_nor_num_0, ...)
 }
 \arguments{
 \item{n}{a}
 
-\item{digits}{number of decimal places}
-
-\item{break_with_four_digits}{Whether break with four digits. Default is TRUE (optional)}
+\item{formatting_fn}{Formatting function}
 
 \item{...}{dots}
 }
+\value{
+A function that can be used for breaks on graphing.
+}
 \description{
-pretty_breaks
+Pretty breaks
 }

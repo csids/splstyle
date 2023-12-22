@@ -2,12 +2,12 @@
 % Please edit documentation in R/save_a4.R
 \name{save_a4}
 \alias{save_a4}
-\title{save_a4}
+\title{Save ggplot in A4 scale}
 \usage{
-save_a4(p, filename, landscape = T, scaling_factor = 1)
+save_a4(q, filename, landscape = T, scaling_factor = 1)
 }
 \arguments{
-\item{p}{plot}
+\item{q}{Plot}
 
 \item{filename}{filename}
 
@@ -15,6 +15,9 @@ save_a4(p, filename, landscape = T, scaling_factor = 1)
 
 \item{scaling_factor}{How much larger/smaller than A4?}
 }
+\value{
+Nothing.
+}
 \description{
-save_a4
+Save ggplot in A4 scale
 }

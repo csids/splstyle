@@ -24,10 +24,10 @@ cs_pal <- function(palette = "primary", direction = 1) {
 #' @param direction as
 #' @param ... as
 #' @export
-scale_color_cs <- scale_colour_fhi <- function(..., palette = "primary", direction = 1) {
+scale_color_cs <- function(..., palette = "primary", direction = 1) {
   pal <- cs_pal(palette = palette, direction = direction)
 
-  ggplot2::discrete_scale("colour", paste0("fhi_", palette), palette = pal, ...)
+  ggplot2::discrete_scale("colour", paste0("cs_", palette), palette = pal, ...)
 }
 
 #' Main colour extractor
@@ -39,7 +39,7 @@ scale_color_cs <- scale_colour_fhi <- function(..., palette = "primary", directi
 scale_fill_cs <- function(..., palette = "primary", direction = 1) {
   pal <- cs_pal(palette = palette, direction = direction)
 
-  ggplot2::discrete_scale("fill", paste0("fhi_", palette), palette = pal, ...)
+  ggplot2::discrete_scale("fill", paste0("cs_", palette), palette = pal, ...)
 }
 
 #' Main colour extractor

@@ -1,5 +1,6 @@
 #' View HTML in the rstudio view
 #' @param x html
+#' @returns Nothing
 #' @export
 view_html <- function(x){
   tempDir <- tempfile()

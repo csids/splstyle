@@ -12,24 +12,23 @@ plot_seasonal_timeseries <- function(x,
 #'
 #' If the dataset is already long it needs to include the following columns: variable, name_outcome and n.
 #' @param x Dataset
-#' @param var_x "date" or "isoyearweek"
-#' @param var_y The name of the variable to use on the y-axis of the graph
-#' @param breaks_x Use csstyle::every_nth() to choose how many ticks to show on the x-axis
-#' @param breaks_y Use csstyle::pretty_breaks() to add ticks on the y-axis
-#' @param lab_main The main title of the graph
-#' @param lab_sub The subtitle of the graph
+#' @param x_var "date" or "isoyearweek"
+#' @param y_var The name of the variable to use on the y-axis of the graph
+#' @param x_breaks Use csstyle::every_nth() to choose how many ticks to show on the x-axis
+#' @param y_breaks Use csstyle::pretty_breaks() to add ticks on the y-axis
+#' @param y_labels How the y-axis ticks should be formatted. For example csstyle::format_nor_num_0 or csstyle::format_nor_perc_0
+#' @param lab_title The main title of the graph
+#' @param lab_subtitle The subtitle of the graph
 #' @param lab_caption If not specified, csstyle::fhi_caption() is used as the lab_caption.
-#' @param lab_date How the dates on the x-axis should be formatted if var_x = "date"
-#' @param lab_x The label of the x-axis
-#' @param lab_y The label of the y-axis
-#' @param lab_legend The label of the legend.
+#' @param lab_date How the dates on the x-axis should be formatted if x_var = "date"
+#' @param x_lab The label of the x-axis
+#' @param y_lab The label of the y-axis
+#' @param legend_lab The label of the legend.
 #' @param legend_position The position the legend should have. If not specified, "bottom" is used.
 #' @param legend_direction layout of items in legend ("horizontal" or "vertical")
-#' @param format_y How the y-axis ticks should be formatted. For example csstyle::format_nor_num_0 or csstyle::format_nor_perc_0
 #' @param facet_wrap What column in the dataset to use to split the dataset.
 #' @param facet_ncol How many columns with graphs if facet_wrap is used.
-#' @param palette What palette to use for the lines. The default is "primary".
-#' @param palette_dir 1 or -1.
+#' @param scale_color What palette to use for the lines. The default is "primary".
 #' @param scale_y How to scale the y-axis if the graph is split with facet_wrap. Free or fixed.
 #' @param base_size The base size of the plot.
 #' @param geom_point TRUE if points should be included in the graph.
@@ -42,24 +41,22 @@ plot_seasonal_timeseries <- function(x,
 #' @export
 plot_seasonal_timeseries.default <- function(
   x,
-  var_x = "isoyearweek",
-  var_y,
-  breaks_x = seq(1,52, 4),
-  breaks_y = csstyle::pretty_breaks(6),
-  lab_main = NULL,
-  lab_sub = NULL,
-  lab_caption = "hi",#fhi_caption(),
-  lab_date = "%Y-%m-%d",
-  lab_y = NULL,
-  lab_x = NULL,
-  lab_legend = NULL,
+  x_var = "isoyearweek",
+  x_breaks = seq(1,52, 4),
+  x_lab = "Isoweek",
+  y_var,
+  y_breaks = csstyle::pretty_breaks(6),
+  y_lab = NULL,
+  y_labels = csstyle::format_num_as_nor_num_0,
+  lab_title = NULL,
+  lab_subtitle = NULL,
+  lab_caption = lubridate::today(),
+  legend_lab = "Season",
   legend_position = "bottom",
   legend_direction = "horizontal",
-  format_y = csstyle::format_num_as_nor_num_0,
+  scale_color = csstyle::scale_color_cs(),
   facet_wrap = NULL,
   facet_ncol = NULL,
-  palette = "primary",
-  palette_dir = 1,
   scale_y = "free",
   base_size = 12,
   geom_point = FALSE,
@@ -71,29 +68,29 @@ plot_seasonal_timeseries.default <- function(
   ) {
 
   pd <- copy(x)
-  pd[, plot_season := fn_convert_isoyearweek_to_season(get(var_x))]
-  pd[, plot_seasonweek := fn_convert_isoyearweek_to_seasonweek(get(var_x))]
+  pd[, plot_season := fn_convert_isoyearweek_to_season(get(x_var))]
+  pd[, plot_seasonweek := fn_convert_isoyearweek_to_seasonweek(get(x_var))]
 
-  q <- ggplot(pd, aes_string(y = var_y, x = "plot_seasonweek", color = "plot_season"))
+  q <- ggplot(pd, aes_string(y = y_var, x = "plot_seasonweek", color = "plot_season"))
   q <- q + geom_line()
 
   if(geom_point) {
     q <- q + geom_point(aes(y = n))
   }
 
-  if(identical(breaks_x, ggplot2::waiver())) breaks_x <- csstyle::every_nth(n = 4)
-  breaks_x <- fn_convert_isoweek_to_seasonweek(breaks_x)
+  if(identical(x_breaks, ggplot2::waiver())) x_breaks <- csstyle::every_nth(n = 4)
+  x_breaks <- fn_convert_isoweek_to_seasonweek(x_breaks)
   q <- q + scale_x_continuous(
-    name = lab_x,
-    breaks = breaks_x,
+    name = x_lab,
+    breaks = x_breaks,
     labels = fn_convert_seasonweek_to_isoweek
   )
 
   q <- q + scale_y_continuous(
-    name = lab_y,
-    breaks = breaks_y,
+    name = y_lab,
+    breaks = y_breaks,
     expand = expand_scale(mult = c(0, 0.1)),
-    labels = format_y
+    labels = y_labels
   )
 
   if(!is.null(facet_wrap)){
@@ -106,16 +103,17 @@ plot_seasonal_timeseries.default <- function(
   # guide = guide_legend(ncol = 3)
 
   q <- q + expand_limits(y = 0)
-  q <- q + scale_color_cs(lab_legend, palette = palette, direction = palette_dir)
+  q <- q + scale_color
   q <- q + labs(
-    title = lab_main,
-    subtitle = lab_sub,
+    title = lab_title,
+    subtitle = lab_subtitle,
     caption = lab_caption,
+    color = legend_lab
   )
   q <- q + theme_cs(
     legend_position = legend_position,
     base_size = base_size,
-    x_axis_vertical = TRUE
+    x_axis_vertical = FALSE
   )
   # q <- q + theme(legend.direction = legend_direction)
   q

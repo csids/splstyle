@@ -1,18 +1,15 @@
-#' pretty_breaks
+#' Pretty breaks
 #' @param n a
-#' @param digits number of decimal places
-#' @param break_with_four_digits Whether break with four digits. Default is TRUE (optional)
+#' @param formatting_fn Formatting function
 #' @param ... dots
+#' @returns A function that can be used for breaks on graphing.
 #' @export
-pretty_breaks <- function(n = 5, digits = 0, break_with_four_digits = T, ...) {
-  force_all(n, digits, break_with_four_digits, ...)
+pretty_breaks <- function(n = 5, formatting_fn = csstyle::format_num_as_nor_num_0, ...) {
+  force_all(n, formatting_fn, ...)
   n_default <- n
   function(x, n = n_default) {
     breaks <- pretty(x, n, ...)
-    names(breaks) <- format_num_as_nor(breaks,
-      digits = digits,
-      break_with_four_digits = break_with_four_digits
-    )
+    names(breaks) <- formatting_fn(breaks)
     breaks
   }
 }
