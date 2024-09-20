@@ -16,7 +16,7 @@ format_location_code_as_factor <- function(
 ){
 
   if(is.null(label)) label <- global$location_code_to_factor_label
-  if(is.null(label_if_not_unique)) label <- global$location_code_to_factor_label_if_not_unique
+  if(is.null(label_if_not_unique)) label_if_not_unique <- global$location_code_to_factor_label_if_not_unique
 
   new_labels_x <- reference[[label]][reference$location_code %in% x]
   location_order_x <- reference$location_order[reference$location_code %in% x]
@@ -78,4 +78,3 @@ format_location_code_as_character <- function(
   retval <- as.character(retval)
   return(retval)
 }
-
