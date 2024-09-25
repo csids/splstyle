@@ -14,13 +14,14 @@ format_cstidy_age_as_factor <- function(x){
   age_labels <- stringr::str_remove_all(age_levels, "^[0]+")
 
   # if there was just 000 at the start, it is now empty, so we need to put a zero back in
-  age_labels <- stringr::str_replace_all(age_labels, "^-", "0-")
+  age_labels <- stringr::str_replace_all(age_labels, "^_", "0_")
 
   # remove all 0s after hyphens
-  age_labels <- stringr::str_replace_all(age_labels, "\\-[0]+", "-")
+  age_labels <- stringr::str_replace_all(age_labels, "\\_[0]+", "_")
 
   # if there was just 000 after the hyphen, it is now empty, so we need to put a zero back in
-  age_labels <- stringr::str_replace_all(age_labels, "\\-$", "-")
+  age_labels <- stringr::str_replace_all(age_labels, "\\_$", "_")
+  age_labels <- stringr::str_replace_all(age_labels, "_", "-")
   age_labels <- paste0(age_labels, " ", csdata::nb$aa,"r")
 
   return(factor(x, levels = age_levels, labels = age_labels))
